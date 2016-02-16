@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.miglayout:miglayout:3.6" type="repository">
+    <properties maven-id="com.miglayout:miglayout:3.6" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/miglayout-3.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
