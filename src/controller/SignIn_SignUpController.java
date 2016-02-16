@@ -2,10 +2,15 @@ package controller;
 
 
 
+import com.mashape.unirest.http.HttpResponse;
+import model.bl.SignIn_SignUpManager;
+import model.bl.SignIn_SignUpManagerImpl;
 import model.bl.UserManager;
 import model.bl.UserManagerImpl;
+import model.to.UserTo;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import view.MainForm;
 import view.SignIn_SignUpForm;
 
 
@@ -38,35 +43,48 @@ public class SignIn_SignUpController implements ActionListener {
         }
     }
 
-        public void register() throws Exception{
-
-
-
-//            User_signUpTo userSignUpTo = new User_signUpTo(0,SignIn_SignUpForm.getUsername().getText(),
-//                    SignIn_SignUpForm.getPassword().getText(),
-//                    SignIn_SignUpForm.getEmail().getText());
-
+        public void signin() throws Exception{
             JSONObject jsonObject = new JSONObject();
 
-//            jsonObject.put("userName", userSignUpTo.getUsername());
-//            jsonObject.put("passWord", userSignUpTo.getPassword());
-//            jsonObject.put("email", userSignUpTo.getEmail());
+            jsonObject.put("userName", SignIn_SignUpForm.getUsername());
+            jsonObject.put("password", SignIn_SignUpForm.getPassword());
 
-            UserManager userManager = UserManagerImpl.getUserManager();
-            String response = userManager.registerUser(jsonObject.toJSONString());
-
+            SignIn_SignUpManager signIn_signUpManager = SignIn_SignUpManagerImpl.getSignIn_signUpManager();
+            HttpResponse<String> response = signIn_signUpManager.signIn(jsonObject.toJSONString());
 
             JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObject1= (JSONObject) jsonParser.parse(response);
+            JSONObject jsonObject2 = (JSONObject) jsonParser.parse(response.toString());
 
-         //   userSignUpTo.setId((Long) jsonObject1.get("id"));
-
-            System.out.println(response);
-
-            JOptionPane.showMessageDialog(null,"inserted");
-
+            UserTo userTo = new UserTo();
+            userTo.setId((Long) jsonObject2.get("id"));
+            userTo.setUsername((String) jsonObject2.get("userName"));
+            userTo.setPicAddress((String) jsonObject2.get("picAddress"));
+            userTo.setAuthToken(String.valueOf(response.getHeaders().get("X-AUTH-TOKEN")));
 
             SignIn_SignUpForm.getFrame().dispose();
+            new MainForm();
         }
 
+    public void signup()throws Exception{
+        JSONObject jsonObject = new JSONObject();
+
+        jsonObject.put("userName", SignIn_SignUpForm.getNewUsername());
+        jsonObject.put("password", SignIn_SignUpForm.getNewPassword());
+        jsonObject.put("email", SignIn_SignUpForm.getNewEmail());
+
+        SignIn_SignUpManager signIn_signUpManager = SignIn_SignUpManagerImpl.getSignIn_signUpManager();
+        HttpResponse<String> response = signIn_signUpManager.signUp(jsonObject.toJSONString());
+
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject2 = (JSONObject) jsonParser.parse(response.toString());
+
+        UserTo userTo = new UserTo();
+        userTo.setId((Long) jsonObject2.get("id"));
+        userTo.setUsername((String) jsonObject2.get("userName"));
+       // userTo.setPicAddress((String) jsonObject2.get("picAddress"));
+        userTo.setAuthToken(String.valueOf(response.getHeaders().get("X-AUTH-TOKEN")));
+
+        SignIn_SignUpForm.getFrame().dispose();
+        new MainForm();
+    }
 }

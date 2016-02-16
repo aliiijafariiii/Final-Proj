@@ -2,7 +2,7 @@ package model.bl;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import model.to.UserTo;
+
 import model.util.UrlUtil;
 
 /**
@@ -19,22 +19,22 @@ public class SignIn_SignUpManagerImpl implements SignIn_SignUpManager {
     }
 
     @Override
-    public String signIn(String userJSON) throws Exception {
+    public HttpResponse<String> signIn(String userJSON) throws Exception {
         HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString() + "/login")
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN", null)
                 .body(userJSON)
                 .asString();
-        return response.getBody();
+        return response;
     }
 
     @Override
-    public String signUp(String userJSON) throws Exception {
+    public HttpResponse<String> signUp(String userJSON) throws Exception {
         HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString() + "/users")
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN", null)
                 .body(userJSON)
                 .asString();
-        return response.getBody();
+        return response;
     }
 }

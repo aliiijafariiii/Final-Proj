@@ -106,7 +106,7 @@ public class SignIn_SignUpForm {
 
         JButton POSTsignIN = new JButton("sign in");
         POSTsignIN.addActionListener(SignIn_SignUpController.getUserSignUpController());
-        POSTsignIN.setActionCommand("enter");
+        POSTsignIN.setActionCommand("signin");
 
         panel1.add(username, "cell 0 0");
         panel1.add(password, "cell 0 1");
@@ -214,7 +214,7 @@ public class SignIn_SignUpForm {
 
         JButton POSTsignUP = new JButton("sign up");
         POSTsignUP.addActionListener(SignIn_SignUpController.getUserSignUpController());
-        POSTsignUP.setActionCommand("register");
+        POSTsignUP.setActionCommand("signup");
 
         panel2.add(newUsername, "cell 0 0");
         panel2.add(newPassword, "cell 0 1");

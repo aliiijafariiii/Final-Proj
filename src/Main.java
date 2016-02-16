@@ -1,7 +1,10 @@
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import controller.SignIn_SignUpController;
+import model.to.UserTo;
 import model.util.UrlUtil;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import view.MainForm;
 import view.SignIn_SignUpForm;
 
@@ -34,8 +37,16 @@ public class Main {
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN", sb.toString())
                 .asString();
+
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject= (JSONObject) jsonParser.parse(String.valueOf(response));
+
 //
         if (response.getStatus()==200){
+            UserTo userTo = new UserTo();
+            userTo.setId((Long) jsonObject.get("id"));
+            userTo.setUsername((String) jsonObject.get("userName"));
+            userTo.setPicAddress((String) jsonObject.get("picAddress"));
 
             new MainForm();
         }else{
