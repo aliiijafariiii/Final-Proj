@@ -25,6 +25,7 @@ public class SignIn_SignUpManagerImpl implements SignIn_SignUpManager {
                 .header("X-AUTH-TOKEN", null)
                 .body(userJSON)
                 .asString();
+
         return response;
     }
 
@@ -32,9 +33,10 @@ public class SignIn_SignUpManagerImpl implements SignIn_SignUpManager {
     public HttpResponse<String> signUp(String userJSON) throws Exception {
         HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString() + "/users")
                 .header("content-type", "application/json")
-                .header("X-AUTH-TOKEN", null)
+                //.header("X-AUTH-TOKEN", null)
                 .body(userJSON)
                 .asString();
+        System.out.println(response.getStatusText());
         return response;
     }
 }
