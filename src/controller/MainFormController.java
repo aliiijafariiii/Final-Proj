@@ -38,29 +38,6 @@ public class MainFormController implements ActionListener {
         }
     }
 
-    public void UpdateAndManageNewsFeed() throws Exception{
-        PostManager postManager = PostManagerImpl.getPostManager();
-        String s = postManager.getPosts().getBody();
-
-        JSONParser jsonParser = new JSONParser();
-        JSONArray jsonArray = (JSONArray) jsonParser.parse(s);
-
-        Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
-        while  (jsonObjectIterator.hasNext()){
-            JSONObject jsonObject = jsonObjectIterator.next();
-            jsonObject.get("id");
-            jsonObject.get("content");
-            //inja bayad panel set shavad
-        }
 
 
-
-
-    }
-    public void SendNewPost() throws Exception{
-        JSONObject jsonObject = new JSONObject();
-
-        jsonObject.put("content", MainForm.getPostcontent().getText());
-        jsonObject.put("password", SignIn_SignUpForm.getPassword());
-    }
 }

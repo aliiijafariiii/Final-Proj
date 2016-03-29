@@ -1,7 +1,9 @@
 import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import model.to.UserTo;
 import model.util.UrlUtil;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import view.MainForm;
@@ -62,14 +64,29 @@ public class Main {
 //
 //        System.out.println(response.getBody());
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        HttpResponse<String> responsee = Unirest.post("http://192.168.1.8:9000/users/upload")
+//        HttpResponse<String> response = Unirest.post("http://localhost:9000/users/upload")
 //                .header("content-type", "multipart/form-data; boundary=---011000010111000001101001")
-//                .header("cache-control", "no-cache")
-//                .header("postman-token", "f4818ede-5aa8-0b7e-7d15-802f109ba7de")
-//                .body("-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"picture\"; filename=\"Elecomp-01.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n\r\n-----011000010111000001101001--")
+//                .body("-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"picture\"; filename=\"[object Object]\"\r\nContent-Type: false\r\n\r\n\r\n-----011000010111000001101001--")
 //                .asString();
+//
 //        System.out.println(response.getBody());
         ///////////////////////////////////////////////////////////////////////////////////
+//        HttpClient httpclient = new HttpClient();
+//        File file = new File( "/home/abc/xyz/solar.jpg" );
+//
+//
+//            PostMethod filePost = new PostMethod( "http://localhost/myservice/upload" );
+//
+//            Part[] parts = { new StringPart( "type","image"),new StringPart( "id","1"), new FilePart( "file", file ) };
+//            filePost.setRequestEntity( new MultipartRequestEntity( parts, filePost.getParams() ) );
+//
+//            // DEBUG
+//
+//
+//            int response = httpclient.executeMethod( filePost );
+
+
+        /////////////////////////////////////////
 //
 //new MainForm();
 
