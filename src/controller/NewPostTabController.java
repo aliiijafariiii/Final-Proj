@@ -8,7 +8,7 @@ import model.to.UserTo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import view.MainForm;
+
 import view.SignIn_SignUpForm;
 
 import java.awt.event.ActionEvent;
@@ -47,8 +47,8 @@ public class NewPostTabController implements ActionListener {
 
 
 
-        jsonObject.put("content", MainForm.getPostcontent().getText());
-        jsonObject.put("file", MainForm.getSelectedFile());
+      //  jsonObject.put("content", MainForm.getPostcontent().getText());
+       // jsonObject.put("file", MainForm.getSelectedFile());
 
 
         PostManager postManager = PostManagerImpl.getPostManager();

@@ -10,7 +10,7 @@ import model.bl.UserManagerImpl;
 import model.to.UserTo;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import view.MainForm;
+
 import view.SignIn_SignUpForm;
 
 
@@ -78,7 +78,7 @@ public class SignIn_SignUpController implements ActionListener {
 
             SignIn_SignUpForm.getFrame().dispose();
 
-            new MainForm();
+          // new MainForm();
         }
 
     public void signup()throws Exception{
@@ -114,6 +114,6 @@ public class SignIn_SignUpController implements ActionListener {
 
         SignIn_SignUpForm.getFrame().dispose();
 
-        new MainForm();
+        //new MainForm();
     }
 }
