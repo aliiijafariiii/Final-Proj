@@ -82,6 +82,13 @@ public class MainPanel  {
             }
         });
 
+        uploadbtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new UploadForm();
+            }
+        });
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double w = screenSize.getWidth();
 

@@ -96,7 +96,7 @@ public class Main {
 //        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
 //        writer.write("baba");
 //        writer.close();
-new UploadForm();
+new MainPanel();
 
     }
 }
