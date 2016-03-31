@@ -9,6 +9,7 @@ import org.json.simple.parser.JSONParser;
 
 import view.MainPanel;
 import view.SignIn_SignUpForm;
+import view.UploadForm;
 
 import java.io.*;
 import java.util.Scanner;
@@ -95,7 +96,7 @@ public class Main {
 //        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
 //        writer.write("baba");
 //        writer.close();
-new MainPanel();
+new UploadForm();
 
     }
 }
