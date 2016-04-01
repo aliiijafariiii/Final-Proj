@@ -5,9 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by ali on 3/30/16.
- */
 public class MainPanel  {
 
     private static JButton profilebtn,feedbtn,friendbtn,massagingbtn,uploadbtn,searchbtn,settingbtn,exitbtn;
@@ -86,6 +83,27 @@ public class MainPanel  {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new UploadForm();
+            }
+        });
+
+        profilebtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new ProfileForm();
+            }
+        });
+
+        massagingbtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new MassageFrom();
+            }
+        });
+
+        feedbtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new FeedForm();
             }
         });
 

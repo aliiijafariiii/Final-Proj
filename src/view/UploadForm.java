@@ -1,7 +1,5 @@
 package view;
 
-
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -12,12 +10,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-
-
-
-/**
- * Created by ali on 3/30/16.
- */
 public class UploadForm {
 
     private static JTextField contentText;
