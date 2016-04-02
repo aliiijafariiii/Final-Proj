@@ -12,8 +12,8 @@ import java.util.Date;
  */
 public class FeedForm {
 
-    private static JLabel imagelabel,contentlabel,timelabel,postIdlabel;
-    private static JButton nextPostbtn,prviousPostbtn,likeBtn,likersBtn,CommentBtn,CommentersBtn,tagsBtn,exitBtn;
+    private static JLabel imagelabel,contentlabel,timelabel,postIdlabel,fasele;
+    private static JButton nextPostbtn,prviousPostbtn,likeBtn,likersBtn,dislikeBtn,dislikersBtn,CommentBtn,CommentersBtn,tagsBtn,exitBtn;
 
     public FeedForm() {
         final JFrame frame = new JFrame();
@@ -23,7 +23,7 @@ public class FeedForm {
         panel1.setLayout(new GridLayout(3,1));
 
         JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayout(3,2));
+        panel2.setLayout(new GridLayout(3,3));
 
         JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayout(2,1));
@@ -34,6 +34,8 @@ public class FeedForm {
         imagelabel = new JLabel(new ImageIcon("/home/ali/Desktop/imageDefult.png"),SwingConstants.CENTER);
         imagelabel.setSize(500,500);
         imagelabel.setBorder(new LineBorder(Color.black));
+
+        fasele = new JLabel();
 
         postIdlabel = new JLabel("dslhfigg9gv5audh",SwingConstants.CENTER);
         contentlabel = new JLabel("content",SwingConstants.CENTER);
@@ -52,6 +54,12 @@ public class FeedForm {
         likersBtn = new JButton("Likers");
         likersBtn.setBackground(new Color(235, 215, 55));
         likersBtn.setForeground(Color.white);
+        dislikeBtn = new JButton("Dislike");
+        dislikeBtn.setBackground(new Color(235, 215, 55));
+        dislikeBtn.setForeground(Color.white);
+        dislikersBtn = new JButton("Dislikers");
+        dislikersBtn.setBackground(new Color(235, 215, 55));
+        dislikersBtn.setForeground(Color.white);
         CommentBtn = new JButton("Comment");
         CommentBtn.setBackground(new Color(235, 215, 55));
         CommentBtn.setForeground(Color.white);
@@ -70,10 +78,13 @@ public class FeedForm {
         panel1.add(timelabel);
 
         panel2.add(prviousPostbtn);
+        panel2.add(fasele);
         panel2.add(nextPostbtn);
         panel2.add(likeBtn);
-        panel2.add(likersBtn);
+        panel2.add(dislikeBtn);
         panel2.add(CommentBtn);
+        panel2.add(likersBtn);
+        panel2.add(dislikersBtn);
         panel2.add(CommentersBtn);
 
         panel3.add(tagsBtn);

@@ -1,0 +1,63 @@
+package view;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.util.Date;
+
+/**
+ * Created by ali on 4/1/16.
+ */
+public class UserForm {
+
+    private static JLabel piclabel,titlelabel,idlabel,namelabel,lastseenlabel;
+    private static JFrame frame;
+
+    public static JFrame getFrame() {
+        return frame;
+    }
+
+    public static void setFrame(JFrame frame) {
+        UserForm.frame = frame;
+    }
+
+    public UserForm() {
+         frame = new JFrame();
+        frame.setLayout(new GridLayout(2, 1));
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(4,1));
+
+        piclabel = new JLabel(new ImageIcon("/home/ali/Desktop/a.jpg"),SwingConstants.CENTER);
+        piclabel.setBorder(new LineBorder(Color.black));
+        titlelabel = new JLabel("Current User",SwingConstants.CENTER);
+        idlabel = new JLabel("216489",SwingConstants.CENTER);
+        namelabel = new JLabel("Ali Jafari",SwingConstants.CENTER);
+        lastseenlabel = new JLabel(String.valueOf(new Date().getTime()),SwingConstants.CENTER);
+
+        panel.add(titlelabel);
+        panel.add(idlabel);
+        panel.add(namelabel);
+        panel.add(lastseenlabel);
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double w = screenSize.getWidth();
+        double h = screenSize.getHeight();
+
+
+        frame.add(piclabel);
+        frame.add(panel);
+        frame.setUndecorated(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(200, 300);
+        frame.setLocation((int) (w-200),0);
+        frame.setVisible(true);
+
+
+
+
+
+
+    }
+}

@@ -76,6 +76,7 @@ public class MainPanel  {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
+                UserForm.getFrame().dispose();
             }
         });
 
@@ -124,5 +125,6 @@ public class MainPanel  {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 100);
         frame.setVisible(true);
+        frame.setResizable(false);
     }
 }

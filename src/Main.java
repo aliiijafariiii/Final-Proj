@@ -4,12 +4,20 @@ import com.mashape.unirest.http.Unirest;
 import model.to.UserTo;
 import model.util.UrlUtil;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import view.MainPanel;
 import view.SignIn_SignUpForm;
 import view.UploadForm;
+import view.UserForm;
 
 import java.io.*;
 import java.util.Scanner;
@@ -66,29 +74,21 @@ public class Main {
 //
 //        System.out.println(response.getBody());
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        HttpResponse<String> response = Unirest.post("http://localhost:9000/users/upload")
-//                .header("content-type", "multipart/form-data; boundary=---011000010111000001101001")
-//                .body("-----011000010111000001101001\r\nContent-Disposition: form-data; name=\"picture\"; filename=\"[object Object]\"\r\nContent-Type: false\r\n\r\n\r\n-----011000010111000001101001--")
-//                .asString();
-//
-//        System.out.println(response.getBody());
-        ///////////////////////////////////////////////////////////////////////////////////
-//        HttpClient httpclient = new HttpClient();
-//        File file = new File( "/home/abc/xyz/solar.jpg" );
-//
-//
-//            PostMethod filePost = new PostMethod( "http://localhost/myservice/upload" );
-//
-//            Part[] parts = { new StringPart( "type","image"),new StringPart( "id","1"), new FilePart( "file", file ) };
-//            filePost.setRequestEntity( new MultipartRequestEntity( parts, filePost.getParams() ) );
-//
-//            // DEBUG
-//
-//
-//            int response = httpclient.executeMethod( filePost );
+        CloseableHttpClient httpClient = HttpClients.createDefault();
+        HttpPost uploadFile = new HttpPost("http://localhost:9000/users/upload");
 
+        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+       // builder.addTextBody("field1", "yes", ContentType.TEXT_PLAIN);
+        builder.addBinaryBody("picture", new File("/home/ali/Desktop/a.jpg"), ContentType.MULTIPART_FORM_DATA, "file.jpg");
+        HttpEntity multipart = builder.build();
 
-        /////////////////////////////////////////
+        uploadFile.setEntity(multipart);
+
+        CloseableHttpResponse response = httpClient.execute(uploadFile);
+        HttpEntity responseEntity = response.getEntity();
+        System.out.println(response.getStatusLine().getStatusCode());
+
+//////////////////////////////
 //
 //new MainForm();
 
@@ -96,7 +96,8 @@ public class Main {
 //        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
 //        writer.write("baba");
 //        writer.close();
-new MainPanel();
+       // new UserForm();
+     //   new MainPanel();
 
     }
 }
