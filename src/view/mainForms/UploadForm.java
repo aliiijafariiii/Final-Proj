@@ -1,4 +1,4 @@
-package view;
+package view.mainForms;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

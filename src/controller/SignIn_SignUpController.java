@@ -11,7 +11,10 @@ import model.to.UserTo;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import view.MainPanel;
 import view.SignIn_SignUpForm;
+import view.mainForms.UserForm;
+import view.util.ProssesBarForm;
 
 
 import javax.swing.*;
@@ -82,6 +85,8 @@ public class SignIn_SignUpController implements ActionListener {
         }
 
     public void signup()throws Exception{
+        //ProssesBarForm prossesBarForm = new ProssesBarForm();
+
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("id",null);
@@ -102,18 +107,28 @@ public class SignIn_SignUpController implements ActionListener {
         JSONObject jsonObject2 = (JSONObject) jsonParser.parse(response.getBody());
 
         UserTo userTo = new UserTo();
-        userTo.setId((Long) jsonObject2.get("id"));
-        userTo.setUsername((String) jsonObject2.get("userName"));
-       // userTo.setPicAddress((String) jsonObject2.get("picAddress"));
-        userTo.setAuthToken((String) jsonObject2.get("authToken"));
-       // userTo.setAuthToken(String.valueOf(response.getHeaders().get("X-AUTH-TOKEN")));
+        userTo.setId((Long) jsonObject.get("id"));
+        userTo.setUsername((String) jsonObject.get("userName"));
+        userTo.setAuthToken((String) jsonObject.get("authToken"));
+        userTo.setLastSeen((Long) jsonObject.get("lastSeen"));
+        userTo.setEmail((String) jsonObject.get("email"));
+        userTo.setPassword((String) jsonObject.get("passWord"));
+        userTo.setPicAddress((String) jsonObject.get("PicAddress"));
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
         writer.write(userTo.getAuthToken());
         writer.close();
 
+        Thread.sleep(1000);
         SignIn_SignUpForm.getFrame().dispose();
 
-        //new MainForm();
+        new MainPanel();
+        UserForm u = new UserForm();
+        u.getIdlabel().setText(String.valueOf(userTo.getId()));
+        u.getNamelabel().setText(userTo.getUsername());
+        u.getLastseenlabel().setText(String.valueOf(userTo.getLastSeen()));
+
+      //  prossesBarForm.getjFrame().dispose();
+
     }
 }

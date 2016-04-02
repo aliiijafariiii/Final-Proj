@@ -1,8 +1,7 @@
-package view;
+package view.mainForms;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.Date;
 
@@ -13,6 +12,30 @@ public class UserForm {
 
     private static JLabel piclabel,titlelabel,idlabel,namelabel,lastseenlabel;
     private static JFrame frame;
+
+    public static JLabel getIdlabel() {
+        return idlabel;
+    }
+
+    public static void setIdlabel(JLabel idlabel) {
+        UserForm.idlabel = idlabel;
+    }
+
+    public static JLabel getNamelabel() {
+        return namelabel;
+    }
+
+    public static void setNamelabel(JLabel namelabel) {
+        UserForm.namelabel = namelabel;
+    }
+
+    public static JLabel getLastseenlabel() {
+        return lastseenlabel;
+    }
+
+    public static void setLastseenlabel(JLabel lastseenlabel) {
+        UserForm.lastseenlabel = lastseenlabel;
+    }
 
     public static JFrame getFrame() {
         return frame;
@@ -29,7 +52,7 @@ public class UserForm {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4,1));
 
-        piclabel = new JLabel(new ImageIcon("/home/ali/Desktop/a.jpg"),SwingConstants.CENTER);
+        piclabel = new JLabel(new ImageIcon("/home/ali/Desktop/imageDefult.png"),SwingConstants.CENTER);
         piclabel.setBorder(new LineBorder(Color.black));
         titlelabel = new JLabel("Current User",SwingConstants.CENTER);
         idlabel = new JLabel("216489",SwingConstants.CENTER);

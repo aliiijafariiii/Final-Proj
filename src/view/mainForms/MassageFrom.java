@@ -1,4 +1,4 @@
-package view;
+package view.mainForms;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
