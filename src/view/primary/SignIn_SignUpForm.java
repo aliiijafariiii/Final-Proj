@@ -1,4 +1,4 @@
-package view;
+package view.primary;
 
 import controller.SignIn_SignUpController;
 import net.miginfocom.swing.MigLayout;

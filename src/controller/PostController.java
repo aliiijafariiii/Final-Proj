@@ -1,6 +1,5 @@
 package controller;
 
-
 import com.mashape.unirest.http.HttpResponse;
 import model.bl.PostManager;
 import model.bl.PostManagerImpl;
@@ -8,26 +7,18 @@ import model.to.UserTo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
-import view.SignIn_SignUpForm;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Method;
 import java.util.Iterator;
 
-/**
- * Created by ali on 3/24/16.
- */
-public class NewPostTabController implements ActionListener {
-    private static NewPostTabController newPostTabController = new NewPostTabController();
+public class PostController implements ActionListener {
 
-    public static NewPostTabController getNewPostTabController() {
-        return newPostTabController;
+    private static PostController postController = new PostController();
+    public static PostController getPostController() {
+        return postController;
     }
-
-    public NewPostTabController() {
-    }
+    public PostController() {}
 
     @Override
     public void actionPerformed(ActionEvent e) {

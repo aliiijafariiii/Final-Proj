@@ -18,6 +18,43 @@ public class UploadForm {
     private static JButton addtag,addimage,uploadpost,exitbtn;
     private static JLabel taglabel,contentNamelbl,imagelabel,imageTextlbl,taglbl;
 
+    public static JTextField getContentText() {
+        return contentText;
+    }
+    public static File getImage() {
+        return image;
+    }
+    public static JTextField getTagField() {
+        return tagField;
+    }
+    public static JButton getAddtag() {
+        return addtag;
+    }
+    public static JButton getAddimage() {
+        return addimage;
+    }
+    public static JButton getUploadpost() {
+        return uploadpost;
+    }
+    public static JButton getExitbtn() {
+        return exitbtn;
+    }
+    public static JLabel getTaglabel() {
+        return taglabel;
+    }
+    public static JLabel getContentNamelbl() {
+        return contentNamelbl;
+    }
+    public static JLabel getImagelabel() {
+        return imagelabel;
+    }
+    public static JLabel getImageTextlbl() {
+        return imageTextlbl;
+    }
+    public static JLabel getTaglbl() {
+        return taglbl;
+    }
+
     public UploadForm(){
         final JFrame frame = new JFrame();
         frame.setLayout(new GridLayout(2, 1));

@@ -6,17 +6,12 @@ import model.util.UrlUtil;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import view.MainPanel;
-import view.SignIn_SignUpForm;
+import view.primary.MainPanel;
+import view.primary.SignIn_SignUpForm;
 import view.mainForms.UserForm;
 import view.util.ProssesBarForm;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import java.io.*;
-import java.util.Date;
 import java.util.Scanner;
 
 /**

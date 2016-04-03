@@ -1,4 +1,4 @@
-package view;
+package view.primary;
 
 import view.mainForms.*;
 
