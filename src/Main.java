@@ -3,15 +3,25 @@ import com.mashape.unirest.http.Unirest;
 import model.to.UserTo;
 import model.util.UrlUtil;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import view.mainForms.UploadForm;
 import view.primary.MainPanel;
 import view.primary.SignIn_SignUpForm;
 import view.mainForms.UserForm;
 import view.util.ProssesBarForm;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -40,13 +50,13 @@ public class Main {
             JSONObject jsonObject = (JSONObject) jsonParser.parse(response.getBody());
 
             UserTo userTo = new UserTo();
-            userTo.setId((Long) jsonObject.get("id"));
-            userTo.setUsername((String) jsonObject.get("userName"));
-            userTo.setAuthToken((String) jsonObject.get("authToken"));
-            userTo.setLastSeen((Long) jsonObject.get("lastSeen"));
-            userTo.setEmail((String) jsonObject.get("email"));
-            userTo.setPassword((String) jsonObject.get("passWord"));
-            userTo.setPicAddress((String) jsonObject.get("PicAddress"));
+            UserTo.setId((Long) jsonObject.get("id"));
+            UserTo.setUsername((String) jsonObject.get("userName"));
+            UserTo.setAuthToken((String) jsonObject.get("authToken"));
+            UserTo.setLastSeen((Long) jsonObject.get("lastSeen"));
+            UserTo.setEmail((String) jsonObject.get("email"));
+            UserTo.setPassword((String) jsonObject.get("passWord"));
+            UserTo.setPicAddress((String) jsonObject.get("PicAddress"));
 
             new MainPanel();
             UserForm u = new UserForm();
@@ -56,50 +66,44 @@ public class Main {
 
             prossesBarForm.getjFrame().dispose();
 
+
+
         } else {
 
             new SignIn_SignUpForm();
             prossesBarForm.getjFrame().dispose();
 
+
         }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        HttpResponse<String> response = Unirest.post("http://192.168.1.8:9000/users")
-//                .header("content-type", "application/json")
-//                .header("cache-control", "no-cache")
-//                .header("postman-token", "bf1fcf6b-968e-be14-4e03-8b95cd7c59ae")
-//                .body("{\"id\":null,\"userName\":\"Daei2\",\"posts\":null}")
-//                .asString();
-//
-//        System.out.println(response.getBody());
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        CloseableHttpClient httpClient = HttpClients.createDefault();
-//        HttpPost uploadFile = new HttpPost("http://localhost:9000/users/upload");
-//        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-//        builder.addBinaryBody("picture", new File("/home/ali/Desktop/a.jpg"), ContentType.MULTIPART_FORM_DATA, "file.jpg");
-//        HttpEntity multipart = builder.build();
-//        uploadFile.setEntity(multipart);
-//        CloseableHttpResponse uploadResponse = httpClient.execute(uploadFile);
-//        System.out.println(uploadResponse.getStatusLine().getStatusCode());
-
-//////////////////////////////
-//
-//new MainForm();
-
+////////////////////////////////////////////
 
 //        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
 //        writer.write("baba");
 //        writer.close();
-       // new UserForm();
-     //   new MainPanel();
 
 
 
 
-//        /////////////////////
-//        ProssesBarForm prossesBarForm = new ProssesBarForm();
-//        Thread.sleep(5000);
-//        prossesBarForm.getjFrame().dispose();
+//        String s = "#ali#baba#yahoo#ali#baba#yahoo";
+//            List list = new ArrayList();
+//            List tags = new ArrayList();
+//            int b ;
+//            for (int i =0;i<s.length();i++){
+//                if (s.charAt(i)=='#'){
+//                   list.add(i);
+//           }
+//       }
+//        list.add(s.length());
+//        for (int j =0;j<list.size()-1;j++){
+//            tags.add(s.substring(1+Integer.valueOf((Integer) list.get(j)), Integer.valueOf((Integer) list.get(j+1))));
+//        }
+
+
+
+
+
+     //   System.out.println(tags);
 
 
 

@@ -1,5 +1,7 @@
 package view.mainForms;
 
+import controller.PostController;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -130,11 +132,14 @@ public class UploadForm {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (!tagField.getText().equals("")){
-                    taglabel.setText(taglabel.getText()+"|"+tagField.getText());
+                    taglabel.setText(taglabel.getText()+"#"+tagField.getText());
                     tagField.setText("");
                 }
             }
         });
+
+        uploadpost.addActionListener(PostController.getPostController());
+        uploadpost.setActionCommand("SendNewPost");
 
         exitbtn.addActionListener(new ActionListener() {
             @Override

@@ -14,27 +14,25 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
 import java.io.File;
+import java.util.Scanner;
 
 /**
  * Created by ali on 1/24/2016.
  */
 public class PostManagerImpl implements PostManager {
-    private static PostManagerImpl postManager = new PostManagerImpl();
 
+    private static PostManagerImpl postManager = new PostManagerImpl();
     public static PostManagerImpl getPostManager() {
         return postManager;
     }
-
-    public PostManagerImpl() {
-    }
+    public PostManagerImpl() {}
 
     @Override
-    public HttpResponse<String> registerPostText(String postJSON,File file,UserTo userTo) throws Exception {
-        
+    public HttpResponse<String> registerPostFull(String postJSON) throws Exception {
+
         HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString()+"/posts")
                 .header("content-type", "application/json")
-                .header("cache-control", "no-cache")
-                .header("X-AUTH-TOKEN",userTo.getAuthToken())
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
                 .body(postJSON)
                 .asString();
 
@@ -42,29 +40,38 @@ public class PostManagerImpl implements PostManager {
     }
 
     @Override
-    public CloseableHttpResponse registerPostFile(String postJSON,File file,UserTo userTo) throws Exception {
+    public CloseableHttpResponse registerPostFile(File file) throws Exception {
 
-        CloseableHttpClient httpClient = HttpClients.createDefault();
-        HttpPost uploadFile = new HttpPost(UrlUtil.getUrlString()+"/upload");
-        MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-        builder.addBinaryBody("picture", file, ContentType.MULTIPART_FORM_DATA, "file.jpg");
-        HttpEntity multipart = builder.build();
-        uploadFile.setEntity(multipart);
-        CloseableHttpResponse uploadResponse = httpClient.execute(uploadFile);
-        System.out.println(uploadResponse.getStatusLine().getStatusCode());
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+            HttpPost uploadFile = new HttpPost("http://localhost:9000/posts/upload");
+            MultipartEntityBuilder builder = MultipartEntityBuilder.create();
+            builder.addBinaryBody("picture", file, ContentType.MULTIPART_FORM_DATA, "file.jpg");
+            HttpEntity multipart = builder.build();
+            uploadFile.setEntity(multipart);
+            CloseableHttpResponse uploadResponse = httpClient.execute(uploadFile);
 
-        return uploadResponse;
+            return uploadResponse;
     }
-
 
     @Override
-    public HttpResponse<String> getPosts() throws Exception {
-        UserTo userTo = new UserTo();
-        HttpResponse<String> response = Unirest.get(UrlUtil.getUrlString() + "/posts")
+    public HttpResponse<String> registerTags(String TagsJSON) throws Exception {
+
+        HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString()+"/tags")
                 .header("content-type", "application/json")
-                .header("X-AUTH_TOKEN",userTo.getAuthToken())
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .body(TagsJSON)
                 .asString();
         return response;
-
     }
+
+    @Override
+    public HttpResponse<String> getTags() throws Exception {
+        HttpResponse<String> response = Unirest.get(UrlUtil.getUrlString()+"/tags")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+
 }

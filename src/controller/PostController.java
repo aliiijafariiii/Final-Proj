@@ -1,17 +1,22 @@
 package controller;
-
 import com.mashape.unirest.http.HttpResponse;
 import model.bl.PostManager;
 import model.bl.PostManagerImpl;
+import model.to.TagTo;
 import model.to.UserTo;
+import model.util.TagUtil;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.util.EntityUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import view.mainForms.UploadForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.List;
 public class PostController implements ActionListener {
 
     private static PostController postController = new PostController();
@@ -30,45 +35,43 @@ public class PostController implements ActionListener {
         }
     }
 
-    public void SendNewPost() throws Exception{
+    public void SendNewPost() throws Exception {
 
-        UserTo userTo = new UserTo();
+            PostManager postManager = PostManagerImpl.getPostManager();
+            TagUtil tagUtil = TagUtil.getTagUtil();
+            HttpResponse res = tagUtil.MakeTagForSend();
 
-        JSONObject jsonObject = new JSONObject();
+            System.out.println(res.getBody());
 
+        if (res.getStatus()==200){
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////
+            CloseableHttpResponse response = postManager.registerPostFile(UploadForm.getImage());
+            String picAdd = EntityUtils.toString(response.getEntity());
 
+            if (response.getStatusLine().getStatusCode() == 200) {
 
-      //  jsonObject.put("content", MainForm.getPostcontent().getText());
-       // jsonObject.put("file", MainForm.getSelectedFile());
+                JSONObject jsonObject1 = new JSONObject();
+                JSONObject jsonObject2 = new JSONObject();
+                JSONArray jsonArray2 = new JSONArray();
 
+                jsonObject1.put("id", null);
+                jsonObject1.put("content", UploadForm.getContentText().getText());
+                jsonObject1.put("picAddress", picAdd);
+                jsonObject2.put("id", UserTo.getId());
+                jsonObject1.put("writer", jsonObject2);
 
-        PostManager postManager = PostManagerImpl.getPostManager();
-        HttpResponse<String> response = postManager.registerPost(jsonObject.toJSONString(),null,userTo);
+                for (int p = 0; p < TagTo.getIdForPost().size(); p++) {
+                    jsonArray2.add(new JSONObject().put("id", TagTo.getIdForPost().get(p)));
+                }
+                jsonObject1.put("tags", jsonArray2);
 
+                HttpResponse<String> FullResponse = postManager.registerPostFull(jsonObject1.toJSONString());
 
+                System.out.println(FullResponse.getBody());
 
-
-    }
-
-
-    public void UpdateAndManageNewsFeed() throws Exception{
-
-        PostManager postManager = PostManagerImpl.getPostManager();
-        String s = postManager.getPosts().getBody();
-
-        JSONParser jsonParser = new JSONParser();
-        JSONArray jsonArray = (JSONArray) jsonParser.parse(s);
-
-        Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
-        while  (jsonObjectIterator.hasNext()){
-            JSONObject jsonObject = jsonObjectIterator.next();
-            jsonObject.get("id");
-            jsonObject.get("content");
-            //inja bayad panel set shavad
+            }
         }
 
-
-
-
+        }
     }
-}
+

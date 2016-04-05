@@ -9,14 +9,12 @@ import model.util.UrlUtil;
  * Created by Ali on 2/15/2016.
  */
 public class SignIn_SignUpManagerImpl implements SignIn_SignUpManager {
-    private static SignIn_SignUpManagerImpl signIn_signUpManager = new SignIn_SignUpManagerImpl();
 
+    private static SignIn_SignUpManagerImpl signIn_signUpManager = new SignIn_SignUpManagerImpl();
     public static SignIn_SignUpManagerImpl getSignIn_signUpManager() {
         return signIn_signUpManager;
     }
-
-    public SignIn_SignUpManagerImpl() {
-    }
+    public SignIn_SignUpManagerImpl() {}
 
     @Override
     public HttpResponse<String> signIn(String userJSON) throws Exception {
@@ -35,7 +33,6 @@ public class SignIn_SignUpManagerImpl implements SignIn_SignUpManager {
                 .header("content-type", "application/json")
                 .body(userJSON)
                 .asString();
-        System.out.println(response.getStatusText());
         return response;
     }
 }

@@ -68,8 +68,6 @@ public class SignIn_SignUpController implements ActionListener {
 
     public void signup()throws Exception{
 
-        //ProssesBarForm prossesBarForm = new ProssesBarForm();
-
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("id",null);
@@ -77,29 +75,22 @@ public class SignIn_SignUpController implements ActionListener {
         jsonObject.put("passWord", SignIn_SignUpForm.getNewPassword().getText());
         jsonObject.put("email", SignIn_SignUpForm.getNewEmail().getText());
 
-        System.out.println(jsonObject.toJSONString());
-
         SignIn_SignUpManager signIn_signUpManager = SignIn_SignUpManagerImpl.getSignIn_signUpManager();
         HttpResponse<String> response = signIn_signUpManager.signUp(jsonObject.toJSONString());
-
-        System.out.println(response.getStatusText());
-        System.out.println(response.getBody());
-        System.out.println(response.getStatus());
 
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObject2 = (JSONObject) jsonParser.parse(response.getBody());
 
-        UserTo userTo = new UserTo();
-        userTo.setId((Long) jsonObject.get("id"));
-        userTo.setUsername((String) jsonObject.get("userName"));
-        userTo.setAuthToken((String) jsonObject.get("authToken"));
-        userTo.setLastSeen((Long) jsonObject.get("lastSeen"));
-        userTo.setEmail((String) jsonObject.get("email"));
-        userTo.setPassword((String) jsonObject.get("passWord"));
-        userTo.setPicAddress((String) jsonObject.get("PicAddress"));
+        UserTo.setId((Long) jsonObject2.get("id"));
+        UserTo.setUsername((String) jsonObject2.get("userName"));
+        UserTo.setAuthToken((String) jsonObject2.get("authToken"));
+        UserTo.setLastSeen((Long) jsonObject2.get("lastSeen"));
+        UserTo.setEmail((String) jsonObject2.get("email"));
+        UserTo.setPassword((String) jsonObject2.get("passWord"));
+        UserTo.setPicAddress((String) jsonObject2.get("PicAddress"));
 
         BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
-        writer.write(userTo.getAuthToken());
+        writer.write(UserTo.getAuthToken());
         writer.close();
 
         Thread.sleep(1000);
@@ -107,11 +98,11 @@ public class SignIn_SignUpController implements ActionListener {
 
         new MainPanel();
         UserForm u = new UserForm();
-        u.getIdlabel().setText(String.valueOf(userTo.getId()));
-        u.getNamelabel().setText(userTo.getUsername());
-        u.getLastseenlabel().setText(String.valueOf(userTo.getLastSeen()));
+        u.getIdlabel().setText(String.valueOf(UserTo.getId()));
+        u.getNamelabel().setText(UserTo.getUsername());
+        u.getLastseenlabel().setText(String.valueOf(UserTo.getLastSeen()));
 
-      //  prossesBarForm.getjFrame().dispose();
+
 
     }
 }
