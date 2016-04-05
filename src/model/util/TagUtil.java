@@ -30,10 +30,26 @@ public class TagUtil {
         List jsonto_tag = new ArrayList();
         List jsonto_id = new ArrayList();
 
+        List tags = null;
+        String s = UploadForm.getTaglabel().getText();
+        List list = new ArrayList();
+        tags = new ArrayList();
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '#') {
+                list.add(i);
+            }
+        }
+        list.add(s.length());
+        for (int j = 0; j < list.size() - 1; j++) {
+            tags.add(s.substring(1 + Integer.valueOf((Integer) list.get(j)), Integer.valueOf((Integer) list.get(j + 1))));
+        }
+
+/////////////////////////
         HttpResponse<String> tagsResponse = postManager.getTags();
         JSONParser jsonParser = new JSONParser();
-        List tags = null;
-        if (tagsResponse.getBody() != "[]") {
+        if (!tagsResponse.getBody().equals("[]")) {
+
+            System.out.println("injaaaa");
             JSONArray jsonArray = (JSONArray) jsonParser.parse(tagsResponse.getBody());
             Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
             while (jsonObjectIterator.hasNext()) {
@@ -41,25 +57,10 @@ public class TagUtil {
                 jsonto_id.add(jsonObject.get("id"));
                 jsonto_tag.add(jsonObject.get("tagName"));
             }
-//        }
-            ///////////////////////////////////////////
-            String s = UploadForm.getTaglabel().getText();
-            List list = new ArrayList();
-            tags = new ArrayList();
-            for (int i = 0; i < s.length(); i++) {
-                if (s.charAt(i) == '#') {
-                    list.add(i);
-                }
-            }
-            list.add(s.length());
-            for (int j = 0; j < list.size() - 1; j++) {
-                tags.add(s.substring(1 + Integer.valueOf((Integer) list.get(j)), Integer.valueOf((Integer) list.get(j + 1))));
-            }
-            ///////////////////////////////////
+/////////////////////////////////////////////
             List idhaa = new ArrayList();
-//        if (jsonto_tag!=null) {
             List finalTags = new ArrayList();
-            for (int b = 0; b < list.size(); b++) {
+            for (int b = 0; b < tags.size(); b++) {
                 for (int a = 0; a < jsonto_tag.size(); a++) {
                     if (jsonto_tag.get(a) != tags.get(b)) {
                         finalTags.add(b);
@@ -77,10 +78,14 @@ public class TagUtil {
                 JSONObject jsonObject5 = (JSONObject) jsonParser5.parse(tasgResponse.getBody());
                 idhaa.add((Long) jsonObject5.get("id"));
             }
+
             TagTo.setIdForPost(idhaa);
-            return tagsResponse;
+            TagTo.setTags_id_list(jsonto_id);
+            TagTo.setTags_name_list(jsonto_tag);
+            return tagsResponse ;
         } else {
 
+            List idhaa = new ArrayList();
             for (int k = 0; k < tags.size(); k++) {
                 String t = (String) tags.get(k);
                 JSONObject tagJson = new JSONObject();
@@ -89,11 +94,11 @@ public class TagUtil {
                 HttpResponse<String> tasgResponse = postManager.registerTags(tagJson.toJSONString());
                 JSONParser jsonParser5 = new JSONParser();
                 JSONObject jsonObject5 = (JSONObject) jsonParser5.parse(tasgResponse.getBody());
-                jsonto_id.add((Long) jsonObject5.get("id"));
+                idhaa.add((Long) jsonObject5.get("id"));
             }
+            TagTo.setIdForPost(idhaa);
         }
-        TagTo.setTags_id_list(jsonto_id);
-        TagTo.setTags_name_list(jsonto_tag);
+
         return tagsResponse;
     }
 }

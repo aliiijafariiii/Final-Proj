@@ -11,6 +11,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import view.mainForms.UploadForm;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Method;
@@ -41,7 +43,7 @@ public class PostController implements ActionListener {
             TagUtil tagUtil = TagUtil.getTagUtil();
             HttpResponse res = tagUtil.MakeTagForSend();
 
-            System.out.println(res.getBody());
+         //   System.out.println(res.getBody());
 
         if (res.getStatus()==200){
  ////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,13 +63,15 @@ public class PostController implements ActionListener {
                 jsonObject1.put("writer", jsonObject2);
 
                 for (int p = 0; p < TagTo.getIdForPost().size(); p++) {
-                    jsonArray2.add(new JSONObject().put("id", TagTo.getIdForPost().get(p)));
+                    JSONObject j = new JSONObject();
+                    j.put("id", TagTo.getIdForPost().get(p));
+                    jsonArray2.add(j);
                 }
+
                 jsonObject1.put("tags", jsonArray2);
-
+                System.out.println(jsonObject1.toJSONString());
                 HttpResponse<String> FullResponse = postManager.registerPostFull(jsonObject1.toJSONString());
-
-                System.out.println(FullResponse.getBody());
+                JOptionPane.showMessageDialog(null,"success Post");
 
             }
         }
