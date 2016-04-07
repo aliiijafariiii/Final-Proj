@@ -125,7 +125,26 @@ public class Main {
 //        System.out.println(jsonObject1.toJSONString());
 
 
-     //   System.out.println(tags);
+//     //   System.out.println(tags);
+//        List l1 = new ArrayList();
+//        List l2 = new ArrayList();
+//
+//        l1.add("aa");
+//        l1.add("bb");
+//        l1.add("cc");
+//
+//        l2.add("dd");
+//        l2.add("aa");
+//
+//        l1.remove(2);
+//        l2.remove(0);
+//
+//        ;
+//
+//        System.out.println(l1);
+//        System.out.println(l2);
+//        System.out.println(l1.indexOf("aa"));
+
 
 
 

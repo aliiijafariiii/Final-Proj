@@ -13,6 +13,7 @@ public interface PostManager {
     public CloseableHttpResponse registerPostFile(File file) throws Exception;
     public HttpResponse<String> registerTags(String TagsJSON) throws Exception;
     public HttpResponse<String> getTags() throws Exception;
+    public HttpResponse<String> getTagsByname(String name) throws Exception;
 
 
 }

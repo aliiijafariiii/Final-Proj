@@ -73,5 +73,14 @@ public class PostManagerImpl implements PostManager {
         return response;
     }
 
+    @Override
+    public HttpResponse<String> getTagsByname(String name) throws Exception {
+        HttpResponse<String> response = Unirest.get(UrlUtil.getUrlString()+"/tags/"+name)
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
 
 }
