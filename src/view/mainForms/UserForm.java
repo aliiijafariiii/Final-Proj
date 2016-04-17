@@ -13,6 +13,7 @@ public class UserForm {
     private static JLabel piclabel,titlelabel,idlabel,namelabel,lastseenlabel;
     private static JFrame frame;
 
+
     public static JLabel getIdlabel() {
         return idlabel;
     }

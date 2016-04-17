@@ -5,6 +5,7 @@ import controller.PostController;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -103,7 +104,9 @@ public class UploadForm {
 
         addimage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent ae) {
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files(jpg,png,gif,jpeg)", "jpg", "png", "gif", "jpeg");
                 JFileChooser fc = new JFileChooser();
+                fc.setFileFilter(filter);
                 int result = fc.showOpenDialog(null);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     image = fc.getSelectedFile();

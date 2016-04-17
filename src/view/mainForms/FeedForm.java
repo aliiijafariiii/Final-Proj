@@ -1,5 +1,7 @@
 package view.mainForms;
 
+import controller.PostController;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -14,6 +16,97 @@ public class FeedForm {
 
     private static JLabel imagelabel,contentlabel,timelabel,postIdlabel,fasele;
     private static JButton nextPostbtn,prviousPostbtn,likeBtn,likersBtn,dislikeBtn,dislikersBtn,CommentBtn,CommentersBtn,tagsBtn,exitBtn;
+
+    public static JLabel getImagelabel() {
+        return imagelabel;
+    }
+    public static void setImagelabel(JLabel imagelabel) {
+        FeedForm.imagelabel = imagelabel;
+    }
+    public static JLabel getContentlabel() {
+        return contentlabel;
+    }
+    public static void setContentlabel(JLabel contentlabel) {
+        FeedForm.contentlabel = contentlabel;
+    }
+    public static JLabel getTimelabel() {
+        return timelabel;
+    }
+    public static void setTimelabel(JLabel timelabel) {
+        FeedForm.timelabel = timelabel;
+    }
+    public static JLabel getPostIdlabel() {
+        return postIdlabel;
+    }
+    public static void setPostIdlabel(JLabel postIdlabel) {
+        FeedForm.postIdlabel = postIdlabel;
+    }
+    public static JLabel getFasele() {
+        return fasele;
+    }
+    public static void setFasele(JLabel fasele) {
+        FeedForm.fasele = fasele;
+    }
+    public static JButton getNextPostbtn() {
+        return nextPostbtn;
+    }
+    public static void setNextPostbtn(JButton nextPostbtn) {
+        FeedForm.nextPostbtn = nextPostbtn;
+    }
+    public static JButton getPrviousPostbtn() {
+        return prviousPostbtn;
+    }
+    public static void setPrviousPostbtn(JButton prviousPostbtn) {
+        FeedForm.prviousPostbtn = prviousPostbtn;
+    }
+    public static JButton getLikeBtn() {
+        return likeBtn;
+    }
+    public static void setLikeBtn(JButton likeBtn) {
+        FeedForm.likeBtn = likeBtn;
+    }
+    public static JButton getLikersBtn() {
+        return likersBtn;
+    }
+    public static void setLikersBtn(JButton likersBtn) {
+        FeedForm.likersBtn = likersBtn;
+    }
+    public static JButton getDislikeBtn() {
+        return dislikeBtn;
+    }
+    public static void setDislikeBtn(JButton dislikeBtn) {
+        FeedForm.dislikeBtn = dislikeBtn;
+    }
+    public static JButton getDislikersBtn() {
+        return dislikersBtn;
+    }
+    public static void setDislikersBtn(JButton dislikersBtn) {
+        FeedForm.dislikersBtn = dislikersBtn;
+    }
+    public static JButton getCommentBtn() {
+        return CommentBtn;
+    }
+    public static void setCommentBtn(JButton commentBtn) {
+        CommentBtn = commentBtn;
+    }
+    public static JButton getCommentersBtn() {
+        return CommentersBtn;
+    }
+    public static void setCommentersBtn(JButton commentersBtn) {
+        CommentersBtn = commentersBtn;
+    }
+    public static JButton getTagsBtn() {
+        return tagsBtn;
+    }
+    public static void setTagsBtn(JButton tagsBtn) {
+        FeedForm.tagsBtn = tagsBtn;
+    }
+    public static JButton getExitBtn() {
+        return exitBtn;
+    }
+    public static void setExitBtn(JButton exitBtn) {
+        FeedForm.exitBtn = exitBtn;
+    }
 
     public FeedForm() {
         final JFrame frame = new JFrame();
@@ -100,6 +193,14 @@ public class FeedForm {
                 frame.dispose();
             }
         });
+
+        nextPostbtn.addActionListener(PostController.getPostController());
+        nextPostbtn.setActionCommand("NextButton_FillNewsFeed");
+
+        prviousPostbtn.addActionListener(PostController.getPostController());
+        prviousPostbtn.setActionCommand("PrivousButton_FillNewsFeed");
+
+
 
 
         frame.add(imagelabel);

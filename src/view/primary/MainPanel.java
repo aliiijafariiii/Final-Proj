@@ -1,7 +1,9 @@
 package view.primary;
 
+import controller.PostController;
 import view.mainForms.*;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -103,12 +105,8 @@ public class MainPanel  {
             }
         });
 
-        feedbtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new FeedForm();
-            }
-        });
+        feedbtn.addActionListener(PostController.getPostController());
+        feedbtn.setActionCommand("FillNewsFeed");
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double w = screenSize.getWidth();

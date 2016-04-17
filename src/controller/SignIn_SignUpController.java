@@ -14,6 +14,9 @@ import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.lang.reflect.Method;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SignIn_SignUpController implements ActionListener {
 
@@ -81,6 +84,7 @@ public class SignIn_SignUpController implements ActionListener {
         JSONParser jsonParser = new JSONParser();
         JSONObject jsonObject2 = (JSONObject) jsonParser.parse(response.getBody());
 
+
         UserTo.setId((Long) jsonObject2.get("id"));
         UserTo.setUsername((String) jsonObject2.get("userName"));
         UserTo.setAuthToken((String) jsonObject2.get("authToken"));
@@ -100,7 +104,12 @@ public class SignIn_SignUpController implements ActionListener {
         UserForm u = new UserForm();
         u.getIdlabel().setText(String.valueOf(UserTo.getId()));
         u.getNamelabel().setText(UserTo.getUsername());
-        u.getLastseenlabel().setText(String.valueOf(UserTo.getLastSeen()));
+
+        Date d = new Date(UserTo.getLastSeen());
+        DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+
+        u.getLastseenlabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
 
 
 

@@ -5,6 +5,7 @@ import com.mashape.unirest.http.Unirest;
 import model.bl.PostManager;
 import model.to.UserTo;
 import model.util.UrlUtil;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -13,8 +14,16 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
+import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.UUID;
 
 /**
  * Created by ali on 1/24/2016.
@@ -42,10 +51,11 @@ public class PostManagerImpl implements PostManager {
     @Override
     public CloseableHttpResponse registerPostFile(File file) throws Exception {
 
+            String ext = FilenameUtils.getExtension(file.getPath());
             CloseableHttpClient httpClient = HttpClients.createDefault();
             HttpPost uploadFile = new HttpPost("http://localhost:9000/posts/upload");
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
-            builder.addBinaryBody("picture", file, ContentType.MULTIPART_FORM_DATA, "file.jpg");
+            builder.addBinaryBody("picture", file, ContentType.MULTIPART_FORM_DATA, UUID.randomUUID().toString()+"."+ext);
             HttpEntity multipart = builder.build();
             uploadFile.setEntity(multipart);
             CloseableHttpResponse uploadResponse = httpClient.execute(uploadFile);
@@ -78,6 +88,107 @@ public class PostManagerImpl implements PostManager {
         HttpResponse<String> response = Unirest.get(UrlUtil.getUrlString()+"/tags/"+name)
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> getPostsByTime() throws Exception {
+        HttpResponse<String> response = Unirest.get(UrlUtil.getUrlString()+"/posts/"+new Date().getTime()+"/string")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public ImageIcon getImage(String url) throws Exception {
+        URL u = new URL(UrlUtil.getUrlString()+"/assets"+url);
+        Image image = ImageIO.read(u);
+        ImageIcon icon = new ImageIcon(image);
+        return icon;
+    }
+
+    @Override
+    public HttpResponse<String> getPostsLikes(long post_id) throws Exception {
+        HttpResponse<String> response = Unirest.get(UrlUtil.getUrlString()+"/posts/"+post_id+"/loves")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> getPostsDislikes(long post_id) throws Exception {
+        HttpResponse<String> response = Unirest.get(UrlUtil.getUrlString()+"/posts/"+post_id+"/dislikes")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> getPostsComments(long post_id) throws Exception {
+        HttpResponse<String> response = Unirest.get(UrlUtil.getUrlString()+"/posts/"+post_id+"/comments")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> removePostsLikes(long post_id) throws Exception {
+        HttpResponse<String> response = Unirest.delete(UrlUtil.getUrlString()+"/loves/"+post_id)
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> removePostsDislikes(long post_id) throws Exception {
+        HttpResponse<String> response = Unirest.delete(UrlUtil.getUrlString()+"/dislikes/"+post_id)
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> removePostsComments(long post_id) throws Exception {
+        HttpResponse<String> response = Unirest.delete(UrlUtil.getUrlString()+"/comments/"+post_id)
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> addPostsLikes(String json) throws Exception {
+        HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString()+"/loves")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .body(json)
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> addPostsDislikes(String json) throws Exception {
+        HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString()+"/dislikes")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .body(json)
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> addPostsComments(String json) throws Exception {
+        HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString()+"/comments")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .body(json)
                 .asString();
         return response;
     }

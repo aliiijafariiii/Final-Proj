@@ -7,61 +7,52 @@ import java.util.Date;
  * Created by Ali on 2/22/2016.
  */
 public class PostTo implements Serializable {
-    private long id;
-    private String content;
-    private Date publishDate;
-    private String picAddress;
-    private long userID;
+    private static long id;
+    private static String content;
+    private static Long publishDate;
+    private static String picAddress;
+    private static long index;
 
     public PostTo() {
     }
 
-    public PostTo(long id, String content, Date publishDate, String picAddress, long userID) {
-        this.id = id;
-        this.content = content;
-        this.publishDate = publishDate;
-        this.picAddress = picAddress;
-        this.userID = userID;
-    }
-
-    public long getId() {
+    public static long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public static void setId(long id) {
+        PostTo.id = id;
     }
 
-    public String getContent() {
+    public static String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public static void setContent(String content) {
+        PostTo.content = content;
     }
 
-    public Date getPublishDate() {
+    public static Long getPublishDate() {
         return publishDate;
     }
 
-    public void setPublishDate(Date publishDate) {
-        this.publishDate = publishDate;
+    public static void setPublishDate(Long publishDate) {
+        PostTo.publishDate = publishDate;
     }
 
-
-    public String getPicAddress() {
+    public static String getPicAddress() {
         return picAddress;
     }
 
-    public void setPicAddress(String picAddress) {
-        this.picAddress = picAddress;
+    public static void setPicAddress(String picAddress) {
+        PostTo.picAddress = picAddress;
     }
 
-    public long getUserID() {
-        return userID;
+    public static long getIndex() {
+        return index;
     }
 
-    public void setUserID(long userID) {
-        this.userID = userID;
+    public static void setIndex(long index) {
+        PostTo.index = index;
     }
 }

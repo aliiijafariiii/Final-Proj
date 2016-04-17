@@ -82,8 +82,6 @@ public class TagUtil {
                     idhaa.add((Long)jsonO.get("id"));
                 }
             }
-
-
 /////////////////////////////////////////////////////////
             System.out.println(finalTags);
             for (int k = 0; k < finalTags.size(); k++) {
