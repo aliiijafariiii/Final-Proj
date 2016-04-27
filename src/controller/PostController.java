@@ -73,8 +73,6 @@ public class PostController implements ActionListener {
             }
         }
     }
-
-    //////////////////////////////////////////////////////////////
     public void FillNewsFeed() throws Exception{
 
         PostManager postManager = PostManagerImpl.getPostManager();
@@ -117,7 +115,6 @@ public class PostController implements ActionListener {
         postTo.setPicAddress(String.valueOf(pp.get("picAddress")));
 
     }
-
     public void NextButton_FillNewsFeed() throws Exception{
 
         PostJsonTo postJsonTo = new PostJsonTo();
@@ -151,7 +148,6 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
         JOptionPane.showMessageDialog(null,"There Is No Another Post To Show!");
 }
     }
-/////////////////////////////////////////////////////////////////////////
     public void PrivousButton_FillNewsFeed() throws Exception{
 
 
@@ -189,9 +185,16 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
     }
 
 
+    public void SendNewLike() throws Exception{
+        PostManager postManager = PostManagerImpl.getPostManager();
 
+//        FeedForm
 
+//        postManager.addPostsLikes();
 
+    }
+    public void SendNewDislike() throws Exception{}
+    public void SendNewComment() throws Exception{}
 
 
 /////////////////////////////////////////////////////////////////////////////
