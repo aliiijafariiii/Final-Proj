@@ -1,5 +1,6 @@
 package view.primary;
 
+import controller.MessageController;
 import controller.PostController;
 import view.mainForms.*;
 
@@ -107,6 +108,9 @@ public class MainPanel  {
 
         feedbtn.addActionListener(PostController.getPostController());
         feedbtn.setActionCommand("FillNewsFeed");
+
+        massagingbtn.addActionListener(MessageController.getMessageController());
+        massagingbtn.setActionCommand("OpenMessageForm");
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double w = screenSize.getWidth();

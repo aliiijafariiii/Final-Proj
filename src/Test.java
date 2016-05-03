@@ -7,6 +7,8 @@ import model.util.UrlUtil;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
@@ -18,7 +20,7 @@ import java.util.Date;
  * Created by ali on 4/8/16.
  */
 public class Test {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 ////        System.out.println(new Date().getTime());
 ////        Long l = 1460104224088L;
 ////
@@ -54,9 +56,24 @@ public class Test {
 //        f.setVisible(true);
 //        f.setSize(500,500);
 
-        System.out.println(new Date().getTime());
+//        System.out.println(new Date().getTime());
 
-
-
-    }
-}
+//        JFrame f = new JFrame();
+//        DefaultListModel<String> dlm = new DefaultListModel<String>();
+//        JList<String> list = new JList<>(dlm);
+//        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+//        f.add(new JScrollPane(list));
+//        f.add(new JButton("Add") {
+//            {
+//                addActionListener(new ActionListener() {
+//                    public void actionPerformed(ActionEvent e) {
+//                        dlm.addElement("A");
+//                    }
+//                });
+//            }
+//        }, BorderLayout.SOUTH);
+//
+//        f.pack();
+//        f.setVisible(true);
+//    }
+    }}

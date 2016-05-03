@@ -15,6 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import view.mainForms.MassageFrom;
 import view.mainForms.UploadForm;
 import view.primary.MainPanel;
 import view.primary.SignIn_SignUpForm;
@@ -71,12 +72,16 @@ public class Main {
             new SignIn_SignUpForm();
             prossesBarForm.getjFrame().dispose();
         }
-////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
 
-//        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
+
+
+
+///////////////////////////////////////////////////////////////
+//        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/b.txt"));
 //        writer.write("baba");
 //        writer.close();
-
+//                new MassageFrom();
 
 
 
