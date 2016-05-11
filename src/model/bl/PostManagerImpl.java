@@ -21,9 +21,6 @@ import java.net.URL;
 import java.util.Date;
 import java.util.UUID;
 
-/**
- * Created by ali on 1/24/2016.
- */
 public class PostManagerImpl implements PostManager {
 
     private static PostManagerImpl postManager = new PostManagerImpl();

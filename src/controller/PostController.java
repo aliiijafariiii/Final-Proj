@@ -16,6 +16,7 @@ import view.mainForms.FeedForm;
 import view.mainForms.UploadForm;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.Method;
@@ -188,12 +189,49 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
     public void SendNewLike() throws Exception{
         PostManager postManager = PostManagerImpl.getPostManager();
 
-//        FeedForm
 
-//        postManager.addPostsLikes();
 
+        JSONObject jsonObject1 = new JSONObject();
+        JSONObject jsonObject2 = new JSONObject();
+        JSONObject jsonObject3 = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        jsonObject1.put("id", null);
+        jsonObject2.put("id",FeedForm.getPostIdlabel().getText());
+        jsonArray.add(jsonObject2);
+        jsonObject1.put("posts", jsonArray);
+        jsonObject3.put("id", UserTo.getId());
+        jsonObject1.put("lover", jsonObject3);
+
+        System.out.println(jsonObject1.toJSONString());
+
+        HttpResponse<String> FullResponse = postManager.addPostsLikes(jsonObject1.toJSONString());
+        if (FullResponse.getStatus() == 200){
+            FeedForm.getLikeBtn().setBackground(Color.green);
+        }
     }
-    public void SendNewDislike() throws Exception{}
+    public void SendNewDislike() throws Exception{
+        PostManager postManager = PostManagerImpl.getPostManager();
+
+        JSONObject jsonObject1 = new JSONObject();
+        JSONObject jsonObject2 = new JSONObject();
+        JSONObject jsonObject3 = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        jsonObject1.put("id", null);
+        jsonObject2.put("id",FeedForm.getPostIdlabel().getText());
+        jsonArray.add(jsonObject2);
+        jsonObject1.put("posts", jsonArray);
+        jsonObject3.put("id", UserTo.getId());
+        jsonObject1.put("disliker", jsonObject3);
+
+        System.out.println(jsonObject1.toJSONString());
+
+        HttpResponse<String> FullResponse = postManager.addPostsDislikes(jsonObject1.toJSONString());
+        if (FullResponse.getStatus() == 200){
+            FeedForm.getDislikeBtn().setBackground(Color.green);
+        }
+    }
+
+
     public void SendNewComment() throws Exception{}
 
 

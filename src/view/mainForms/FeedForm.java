@@ -202,6 +202,11 @@ public class FeedForm {
         prviousPostbtn.setActionCommand("PrivousButton_FillNewsFeed");
 
 
+        likeBtn.addActionListener(PostController.getPostController());
+        likeBtn.setActionCommand("SendNewLike");
+
+        dislikeBtn.addActionListener(PostController.getPostController());
+        dislikeBtn.setActionCommand("SendNewDislike");
 
 
         frame.add(imagelabel);
