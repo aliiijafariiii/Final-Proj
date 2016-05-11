@@ -2,6 +2,7 @@ package view.primary;
 
 import controller.MessageController;
 import controller.PostController;
+import model.util.Utils;
 import view.mainForms.*;
 
 import javax.annotation.PostConstruct;
@@ -28,14 +29,14 @@ public class MainPanel  {
         settingbtn= new JButton();
         exitbtn= new JButton();
 
-        ImageIcon profileicon = new ImageIcon("/home/ali/Desktop/iconss/profile.png");
-        ImageIcon feedicon = new ImageIcon("/home/ali/Desktop/iconss/news.png");
-        ImageIcon friendicon = new ImageIcon("/home/ali/Desktop/iconss/friend.png");
-        ImageIcon massageicon = new ImageIcon("/home/ali/Desktop/iconss/message.png");
-        ImageIcon uploadicon = new ImageIcon("/home/ali/Desktop/iconss/upload.png");
-        ImageIcon searchicon = new ImageIcon("/home/ali/Desktop/iconss/search.png");
-        ImageIcon settingicon = new ImageIcon("/home/ali/Desktop/iconss/setting.png");
-        ImageIcon exiticon = new ImageIcon("/home/ali/Desktop/iconss/exit.png");
+        ImageIcon profileicon = new ImageIcon(Utils.getAddressString()+"/iconss/profile.png");
+        ImageIcon feedicon = new ImageIcon(Utils.getAddressString()+"/iconss/news.png");
+        ImageIcon friendicon = new ImageIcon(Utils.getAddressString()+"/iconss/friend.png");
+        ImageIcon massageicon = new ImageIcon(Utils.getAddressString()+"/iconss/message.png");
+        ImageIcon uploadicon = new ImageIcon(Utils.getAddressString()+"/iconss/upload.png");
+        ImageIcon searchicon = new ImageIcon(Utils.getAddressString()+"/iconss/search.png");
+        ImageIcon settingicon = new ImageIcon(Utils.getAddressString()+"/iconss/setting.png");
+        ImageIcon exiticon = new ImageIcon(Utils.getAddressString()+"/iconss/exit.png");
 
         profilebtn.setIcon(profileicon);
         profilebtn.setFocusPainted(false);

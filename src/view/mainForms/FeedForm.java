@@ -1,6 +1,7 @@
 package view.mainForms;
 
 import controller.PostController;
+import model.util.Utils;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -124,7 +125,7 @@ public class FeedForm {
         JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayout(3,1));
 
-        imagelabel = new JLabel(new ImageIcon("/home/ali/Desktop/imageDefult.png"),SwingConstants.CENTER);
+        imagelabel = new JLabel(new ImageIcon(Utils.getAddressString()+"/imageDefult.png"),SwingConstants.CENTER);
         imagelabel.setSize(500,500);
         imagelabel.setBorder(new LineBorder(Color.black));
 

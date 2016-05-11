@@ -1,5 +1,7 @@
 package view.mainForms;
 
+import model.util.Utils;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -53,7 +55,7 @@ public class UserForm {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(4,1));
 
-        piclabel = new JLabel(new ImageIcon("/home/ali/Desktop/imageDefult.png"),SwingConstants.CENTER);
+        piclabel = new JLabel(new ImageIcon(Utils.getAddressString()+"/imageDefult.png"),SwingConstants.CENTER);
         piclabel.setBorder(new LineBorder(Color.black));
         titlelabel = new JLabel("Current User",SwingConstants.CENTER);
         idlabel = new JLabel("216489",SwingConstants.CENTER);

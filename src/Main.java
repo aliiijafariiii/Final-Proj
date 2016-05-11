@@ -25,7 +25,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         ProssesBarForm prossesBarForm = new ProssesBarForm();
-        String token = new Scanner(new File("/home/ali/Desktop/a.txt")).useDelimiter("\\Z").next();
+        String token = new Scanner(new File(Utils.getAddressString()+"/a.txt")).useDelimiter("\\Z").next();
         HttpResponse<String> response = null;
         if (token != null) {
             response = Unirest.get(Utils.getUrlString() + "/myuser")

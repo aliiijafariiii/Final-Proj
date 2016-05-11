@@ -1,6 +1,7 @@
 package view.mainForms;
 
 import controller.PostController;
+import model.util.Utils;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -87,7 +88,7 @@ public class UploadForm {
         taglabel = new JLabel();
         contentNamelbl = new JLabel("please add content text for this image",SwingConstants.CENTER);
 
-        imagelabel = new JLabel(new ImageIcon("/home/ali/Desktop/imageDefult.png"),SwingConstants.CENTER);
+        imagelabel = new JLabel(new ImageIcon(Utils.getAddressString()+"/imageDefult.png"),SwingConstants.CENTER);
         imagelabel.setSize(500,500);
         imagelabel.setBorder(new LineBorder(Color.black));
 
