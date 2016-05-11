@@ -45,15 +45,15 @@ public class Main {
             UserTo.setPassword((String) jsonObject.get("passWord"));
             UserTo.setPicAddress((String) jsonObject.get("PicAddress"));
             new MainPanel();
-            UserForm u = new UserForm();
-            u.getIdlabel().setText(String.valueOf(userTo.getId()));
-            u.getNamelabel().setText(userTo.getUsername());
-
-            Date d = new Date(UserTo.getLastSeen());
-            DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-            DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
-
-            u.getLastseenlabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
+//            UserForm u = new UserForm();
+//            u.getIdlabel().setText(String.valueOf(userTo.getId()));
+//            u.getNamelabel().setText(userTo.getUsername());
+//
+//            Date d = new Date(UserTo.getLastSeen());
+//            DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+//            DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+//
+//            u.getLastseenlabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
             prossesBarForm.getjFrame().dispose();
         } else {
             new SignIn_SignUpForm();

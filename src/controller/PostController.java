@@ -33,7 +33,6 @@ public class PostController implements ActionListener {
         return postController;
     }
     public PostController() {}
-
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
@@ -43,6 +42,12 @@ public class PostController implements ActionListener {
             e1.printStackTrace();
         }
     }
+
+
+
+
+
+
 
     public void SendNewPost() throws Exception {
 
@@ -117,15 +122,12 @@ public class PostController implements ActionListener {
 
     }
     public void NextButton_FillNewsFeed() throws Exception{
-
         PostJsonTo postJsonTo = new PostJsonTo();
         PostTo postTo = new PostTo();
-
 if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
 
     JSONParser jp = new JSONParser();
     JSONObject pp = (JSONObject) jp.parse(String.valueOf(postJsonTo.getPostsJson().get((int) postTo.getIndex() + 1)));
-
 
     PostManager postManager = PostManagerImpl.getPostManager();
     ImageIcon image = postManager.getImage(String.valueOf(pp.get("picAddress")));
@@ -184,8 +186,6 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
             JOptionPane.showMessageDialog(null,"There Is No Another Post To Show!");
         }
     }
-
-
     public void SendNewLike() throws Exception{
         PostManager postManager = PostManagerImpl.getPostManager();
 
@@ -209,6 +209,7 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
             FeedForm.getLikeBtn().setBackground(Color.green);
         }
     }
+
     public void SendNewDislike() throws Exception{
         PostManager postManager = PostManagerImpl.getPostManager();
 
@@ -232,9 +233,29 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
     }
 
 
-    public void SendNewComment() throws Exception{}
+    public void SendNewComment() throws Exception{
+        PostManager postManager = PostManagerImpl.getPostManager();
 
+        JSONObject jsonObject1 = new JSONObject();
+        JSONObject jsonObject2 = new JSONObject();
+        JSONObject jsonObject3 = new JSONObject();
+        jsonObject1.put("id", null);
 
+        String s = JOptionPane.showInputDialog(null,"please write your commnet","");
+
+        jsonObject1.put("commentBody", s);
+        jsonObject2.put("id",FeedForm.getPostIdlabel().getText());
+        jsonObject1.put("post", jsonObject2);
+        jsonObject3.put("id", UserTo.getId());
+        jsonObject1.put("commenter", jsonObject3);
+
+        System.out.println(jsonObject1.toJSONString());
+
+        HttpResponse<String> FullResponse = postManager.addPostsComments(jsonObject1.toJSONString());
+        if (FullResponse.getStatus() == 200){
+            FeedForm.getCommentBtn().setBackground(Color.green);
+        }
+    }
 /////////////////////////////////////////////////////////////////////////////
     public void ShowLikes() throws Exception{
 
