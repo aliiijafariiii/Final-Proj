@@ -83,7 +83,6 @@ public class TagUtil {
                 }
             }
 /////////////////////////////////////////////////////////
-            System.out.println(finalTags);
             for (int k = 0; k < finalTags.size(); k++) {
                 String t = (String) tags.get(Integer.valueOf((Integer) finalTags.get(k)));
                 JSONObject tagJson = new JSONObject();
