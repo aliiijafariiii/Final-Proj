@@ -4,6 +4,7 @@ import com.mashape.unirest.http.HttpResponse;
 import model.bl.SignIn_SignUpManager;
 import model.bl.SignIn_SignUpManagerImpl;
 import model.to.UserTo;
+import model.util.Utils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import view.primary.MainPanel;
@@ -93,7 +94,7 @@ public class SignIn_SignUpController implements ActionListener {
         UserTo.setPassword((String) jsonObject2.get("passWord"));
         UserTo.setPicAddress((String) jsonObject2.get("PicAddress"));
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(Utils.getAddressString()+"/a.txt"));
         writer.write(UserTo.getAuthToken());
         writer.close();
 

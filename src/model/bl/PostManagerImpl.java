@@ -49,7 +49,7 @@ public class PostManagerImpl implements PostManager {
 
             String ext = FilenameUtils.getExtension(file.getPath());
             CloseableHttpClient httpClient = HttpClients.createDefault();
-            HttpPost uploadFile = new HttpPost("http://localhost:9000/posts/upload");
+            HttpPost uploadFile = new HttpPost(Utils.getUrlString()+"/posts/upload");
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.addBinaryBody("picture", file, ContentType.MULTIPART_FORM_DATA, UUID.randomUUID().toString()+"."+ext);
             HttpEntity multipart = builder.build();
