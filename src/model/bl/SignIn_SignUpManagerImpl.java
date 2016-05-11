@@ -3,7 +3,7 @@ package model.bl;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 
-import model.util.UrlUtil;
+import model.util.Utils;
 
 /**
  * Created by Ali on 2/15/2016.
@@ -18,7 +18,7 @@ public class SignIn_SignUpManagerImpl implements SignIn_SignUpManager {
 
     @Override
     public HttpResponse<String> signIn(String userJSON) throws Exception {
-        HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString() + "/login")
+        HttpResponse<String> response = Unirest.post(Utils.getUrlString() + "/login")
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN", null)
                 .body(userJSON)
@@ -29,7 +29,7 @@ public class SignIn_SignUpManagerImpl implements SignIn_SignUpManager {
 
     @Override
     public HttpResponse<String> signUp(String userJSON) throws Exception {
-        HttpResponse<String> response = Unirest.post(UrlUtil.getUrlString() + "/users")
+        HttpResponse<String> response = Unirest.post(Utils.getUrlString() + "/users")
                 .header("content-type", "application/json")
                 .body(userJSON)
                 .asString();

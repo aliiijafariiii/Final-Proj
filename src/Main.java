@@ -1,22 +1,11 @@
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import model.to.TagTo;
 import model.to.UserTo;
-import model.util.UrlUtil;
+import model.util.Utils;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import view.mainForms.MassageFrom;
-import view.mainForms.UploadForm;
 import view.primary.MainPanel;
 import view.primary.SignIn_SignUpForm;
 import view.mainForms.UserForm;
@@ -25,9 +14,7 @@ import view.util.ProssesBarForm;
 import java.io.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -41,7 +28,7 @@ public class Main {
         String token = new Scanner(new File("/home/ali/Desktop/a.txt")).useDelimiter("\\Z").next();
         HttpResponse<String> response = null;
         if (token != null) {
-            response = Unirest.get(UrlUtil.getUrlString() + "/myuser")
+            response = Unirest.get(Utils.getUrlString() + "/myuser")
                     .header("content-type", "application/json")
                     .header("X-AUTH-TOKEN", token)
                     .asString();
