@@ -16,6 +16,7 @@ import java.io.IOException;
 
 public class UploadForm {
 
+    private static JFrame frame ;
     private static JTextField contentText;
     private static File image;
     private static JTextField tagField;
@@ -58,9 +59,15 @@ public class UploadForm {
     public static JLabel getTaglbl() {
         return taglbl;
     }
+    public static JFrame getFrame() {
+        return frame;
+    }
+    public static void setFrame(JFrame frame) {
+        UploadForm.frame = frame;
+    }
 
     public UploadForm(){
-        final JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setLayout(new GridLayout(2, 1));
 
         JPanel panel = new JPanel();

@@ -14,6 +14,7 @@ public class UserForm {
 
     private static JLabel piclabel,titlelabel,idlabel,namelabel,lastseenlabel;
     private static JFrame frame;
+    private static JButton logout;
 
 
     public static JLabel getIdlabel() {
@@ -53,7 +54,7 @@ public class UserForm {
         frame.setLayout(new GridLayout(2, 1));
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(4,1));
+        panel.setLayout(new GridLayout(5,1));
 
         piclabel = new JLabel(new ImageIcon(Utils.getAddressString()+"/imageDefult.png"),SwingConstants.CENTER);
         piclabel.setBorder(new LineBorder(Color.black));
@@ -61,12 +62,13 @@ public class UserForm {
         idlabel = new JLabel("216489",SwingConstants.CENTER);
         namelabel = new JLabel("Ali Jafari",SwingConstants.CENTER);
         lastseenlabel = new JLabel(String.valueOf(new Date().getTime()),SwingConstants.CENTER);
+        logout = new JButton("Log Out :(");
 
         panel.add(titlelabel);
         panel.add(idlabel);
         panel.add(namelabel);
         panel.add(lastseenlabel);
-
+        panel.add(logout);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double w = screenSize.getWidth();
         double h = screenSize.getHeight();
@@ -76,7 +78,7 @@ public class UserForm {
         frame.add(panel);
         frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(200, 300);
+        frame.setSize(200, 400);
         frame.setLocation((int) (w-200),0);
         frame.setVisible(true);
 

@@ -102,16 +102,17 @@ public class SignIn_SignUpController implements ActionListener {
         SignIn_SignUpForm.getFrame().dispose();
 
         new MainPanel();
-//        UserForm u = new UserForm();
-//        u.getIdlabel().setText(String.valueOf(UserTo.getId()));
-//        u.getNamelabel().setText(UserTo.getUsername());
-//
-//        Date d = new Date(UserTo.getLastSeen());
-//        DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-//        DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+//////////////////////////////////////
+        UserForm u = new UserForm();
+        u.getIdlabel().setText(String.valueOf(UserTo.getId()));
+        u.getNamelabel().setText(UserTo.getUsername());
 
-//        u.getLastseenlabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
+        Date d = new Date(UserTo.getLastSeen());
+        DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
 
+        u.getLastseenlabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
+//////////////////////////////////////////////
 
 
     }

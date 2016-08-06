@@ -76,6 +76,7 @@ public class PostController implements ActionListener {
                 jsonObject1.put("tags", jsonArray2);
                 HttpResponse<String> FullResponse = postManager.registerPostFull(jsonObject1.toJSONString());
                 JOptionPane.showMessageDialog(null,"success Post");
+                UploadForm.getFrame().dispose();
             }
         }
     }
