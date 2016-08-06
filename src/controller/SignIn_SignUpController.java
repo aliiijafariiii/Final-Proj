@@ -38,36 +38,47 @@ public class SignIn_SignUpController implements ActionListener {
     }
 
         public void signin() throws Exception{
-//
-//            JSONObject jsonObject = new JSONObject();
-//
-//            jsonObject.put("user", SignIn_SignUpForm.getUsername().getText());
-//            jsonObject.put("pass", SignIn_SignUpForm.getPassword().getText());
-//
-//            System.out.println(jsonObject.toJSONString());
-//
-//            SignIn_SignUpManager signIn_signUpManager = SignIn_SignUpManagerImpl.getSignIn_signUpManager();
-//            HttpResponse<String> response = signIn_signUpManager.signIn(jsonObject.toJSONString());
-//
-//            System.out.println(response.getBody());
-//
-//            JSONParser jsonParser = new JSONParser();
-//            JSONObject jsonObject2 = (JSONObject) jsonParser.parse(response.getBody());
-//
-//            UserTo userTo = new UserTo();
-//            userTo.setId((Long) jsonObject2.get("id"));
-//            userTo.setUsername((String) jsonObject2.get("userName"));
-//            userTo.setAuthToken((String) jsonObject2.get("authToken"));
-//            userTo.setPicAddress((String) jsonObject2.get("picAddress"));
-//            userTo.setAuthToken(String.valueOf(response.getHeaders().));
-//
-//            BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
-//            writer.write(userTo.getAuthToken());
-//            writer.close();
-//
-//            SignIn_SignUpForm.getFrame().dispose();
-//
-//           new MainForm();
+
+            JSONObject jsonObject = new JSONObject();
+
+            jsonObject.put("user", SignIn_SignUpForm.getUsername().getText());
+            jsonObject.put("pass", SignIn_SignUpForm.getPassword().getText());
+
+            System.out.println(jsonObject.toJSONString());
+
+            SignIn_SignUpManager signIn_signUpManager = SignIn_SignUpManagerImpl.getSignIn_signUpManager();
+            HttpResponse<String> response = signIn_signUpManager.signIn(jsonObject.toJSONString());
+
+            System.out.println(response.getBody());
+
+            JSONParser jsonParser = new JSONParser();
+            JSONObject jsonObject2 = (JSONObject) jsonParser.parse(response.getBody());
+
+            UserTo userTo = new UserTo();
+            userTo.setId((Long) jsonObject2.get("id"));
+            userTo.setUsername((String) jsonObject2.get("userName"));
+            userTo.setAuthToken((String) jsonObject2.get("authToken"));
+            userTo.setPicAddress((String) jsonObject2.get("picAddress"));
+            userTo.setAuthToken(String.valueOf(response.getHeaders().get("")));
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("/home/ali/Desktop/a.txt"));
+            writer.write(userTo.getAuthToken());
+            writer.close();
+
+            SignIn_SignUpForm.getFrame().dispose();
+
+            new MainPanel();
+//////////////////////////////////////
+            UserForm u = new UserForm();
+            u.getIdlabel().setText(String.valueOf(UserTo.getId()));
+            u.getNamelabel().setText(UserTo.getUsername());
+
+            Date d = new Date(UserTo.getLastSeen());
+            DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+
+            u.getLastseenlabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
+//////////////////////////////////////////////
         }
 
     public void signup()throws Exception{
