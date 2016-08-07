@@ -5,6 +5,8 @@ import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.text.AttributedCharacterIterator;
@@ -54,17 +56,25 @@ public class SignIn_SignUpForm {
     public SignIn_SignUpForm() {
         frame = new JFrame();
         tp = new JTabbedPane();
+//        tp.setBackground(new Color(255, 184, 146));
 
         JPanel panel1 = new JPanel();
-        panel1.setLayout(new MigLayout());
+        panel1.setLayout(new GridLayout(6,1));
 
         username = new JTextField(20);
         username.setText("Username");
         username.setForeground(Color.LIGHT_GRAY);
+        username.setHorizontalAlignment(SwingConstants.CENTER);
         password = new JPasswordField(20);
         password.setText("Password");
         password.setEchoChar((char) 0);
         password.setForeground(Color.LIGHT_GRAY);
+        password.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JLabel OpenLabel1 = new JLabel("<html>Connect With Friends And <br> The World Around You On </html>");
+        OpenLabel1.setHorizontalAlignment(SwingConstants.CENTER);
+        JLabel OpenLabel2 = new JLabel("<html><h1>PICBOOOOOK<h1></html>");
+        OpenLabel2.setHorizontalAlignment(SwingConstants.CENTER);
 
         username.addFocusListener(new FocusListener() {
             @Override
@@ -107,14 +117,28 @@ public class SignIn_SignUpForm {
         JButton UsersignIN = new JButton("sign in");
         UsersignIN.addActionListener(SignIn_SignUpController.getUserSignUpController());
         UsersignIN.setActionCommand("signin");
+        UsersignIN.setBackground(new Color(255, 184, 146));
 
-        panel1.add(username, "cell 0 0");
-        panel1.add(password, "cell 0 1");
-        panel1.add(UsersignIN, "cell 0 2");
+        JButton exitSignin = new JButton("Exit");
+        exitSignin.setBackground(new Color(255, 184, 146));
+        exitSignin.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+
+
+        panel1.add(OpenLabel1);
+        panel1.add(OpenLabel2);
+        panel1.add(username);
+        panel1.add(password);
+        panel1.add(UsersignIN);
+        panel1.add(exitSignin);
         ////////////////////////////
 
         JPanel panel2 = new JPanel();
-        panel2.setLayout(new MigLayout());
+        panel2.setLayout(new GridLayout(6,1));
 
         newUsername = new JTextField(20);
         newPassword = new JPasswordField(20);
@@ -128,14 +152,18 @@ public class SignIn_SignUpForm {
 
         newUsername.setText("Please Enter Username");
         newUsername.setForeground(Color.LIGHT_GRAY);
+        newUsername.setHorizontalAlignment(SwingConstants.CENTER);
         newPassword.setEchoChar((char) 0);
         newPassword.setText("Please Enter Password");
         newPassword.setForeground(Color.LIGHT_GRAY);
+        newPassword.setHorizontalAlignment(SwingConstants.CENTER);
         reNewPassword.setEchoChar((char) 0);
         reNewPassword.setText("Please Re Enter Password");
         reNewPassword.setForeground(Color.LIGHT_GRAY);
+        reNewPassword.setHorizontalAlignment(SwingConstants.CENTER);
         newEmail.setText("Please Enter Email");
         newEmail.setForeground(Color.LIGHT_GRAY);
+        newEmail.setHorizontalAlignment(SwingConstants.CENTER);
 
         newUsername.addFocusListener(new FocusListener() {
             @Override
@@ -215,12 +243,24 @@ public class SignIn_SignUpForm {
         JButton UsersignUP = new JButton("sign up");
         UsersignUP.addActionListener(SignIn_SignUpController.getUserSignUpController());
         UsersignUP.setActionCommand("signup");
+        UsersignUP.setBackground(new Color(255, 184, 146));
 
-        panel2.add(newUsername, "cell 0 0");
-        panel2.add(newPassword, "cell 0 1");
-        panel2.add(reNewPassword, "cell 0 2");
-        panel2.add(newEmail, "cell 0 3");
-        panel2.add(UsersignUP, "cell 0 4");
+        JButton exitSignup = new JButton("Exit");
+        exitSignup.setBackground(new Color(255, 184, 146));
+
+        exitSignup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+
+        panel2.add(newUsername);
+        panel2.add(newPassword);
+        panel2.add(reNewPassword);
+        panel2.add(newEmail);
+        panel2.add(UsersignUP);
+        panel2.add(exitSignup);
 ///////////////////////////////////////////////////////
         tp.add(panel1);
         tp.setTitleAt(0, "Sign In");
