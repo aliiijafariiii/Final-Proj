@@ -14,6 +14,15 @@ import java.awt.event.ActionListener;
 public class MainPanel  {
 
     private static JButton profilebtn,feedbtn,friendbtn,massagingbtn,uploadbtn,searchbtn,settingbtn,exitbtn;
+
+    public static JFrame getFrame() {
+        return frame;
+    }
+
+    public static void setFrame(JFrame frame) {
+        MainPanel.frame = frame;
+    }
+
     private static JFrame frame;
 
     public MainPanel() {

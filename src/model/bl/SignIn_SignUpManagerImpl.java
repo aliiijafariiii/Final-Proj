@@ -3,6 +3,7 @@ package model.bl;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 
+import model.to.UserTo;
 import model.util.Utils;
 
 /**
@@ -35,4 +36,16 @@ public class SignIn_SignUpManagerImpl implements SignIn_SignUpManager {
                 .asString();
         return response;
     }
+
+    @Override
+    public HttpResponse<String> logOut() throws Exception {
+        HttpResponse<String> response = Unirest.post(Utils.getUrlString() + "/logout")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN", UserTo.getAuthToken())
+                .body("[]")
+                .asString();
+        return response;
+    }
+
+
 }

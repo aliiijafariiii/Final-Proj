@@ -104,13 +104,13 @@ public class SignIn_SignUpForm {
             }
         });
 
-        JButton POSTsignIN = new JButton("sign in");
-        POSTsignIN.addActionListener(SignIn_SignUpController.getUserSignUpController());
-        POSTsignIN.setActionCommand("signin");
+        JButton UsersignIN = new JButton("sign in");
+        UsersignIN.addActionListener(SignIn_SignUpController.getUserSignUpController());
+        UsersignIN.setActionCommand("signin");
 
         panel1.add(username, "cell 0 0");
         panel1.add(password, "cell 0 1");
-        panel1.add(POSTsignIN, "cell 0 2");
+        panel1.add(UsersignIN, "cell 0 2");
         ////////////////////////////
 
         JPanel panel2 = new JPanel();
@@ -212,15 +212,15 @@ public class SignIn_SignUpForm {
             }
         });
 
-        JButton POSTsignUP = new JButton("sign up");
-        POSTsignUP.addActionListener(SignIn_SignUpController.getUserSignUpController());
-        POSTsignUP.setActionCommand("signup");
+        JButton UsersignUP = new JButton("sign up");
+        UsersignUP.addActionListener(SignIn_SignUpController.getUserSignUpController());
+        UsersignUP.setActionCommand("signup");
 
         panel2.add(newUsername, "cell 0 0");
         panel2.add(newPassword, "cell 0 1");
         panel2.add(reNewPassword, "cell 0 2");
         panel2.add(newEmail, "cell 0 3");
-        panel2.add(POSTsignUP, "cell 0 4");
+        panel2.add(UsersignUP, "cell 0 4");
 ///////////////////////////////////////////////////////
         tp.add(panel1);
         tp.setTitleAt(0, "Sign In");

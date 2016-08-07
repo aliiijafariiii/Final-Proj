@@ -1,5 +1,6 @@
 package view.mainForms;
 
+import controller.SignIn_SignUpController;
 import model.util.Utils;
 
 import javax.swing.*;
@@ -63,6 +64,9 @@ public class UserForm {
         namelabel = new JLabel("Ali Jafari",SwingConstants.CENTER);
         lastseenlabel = new JLabel(String.valueOf(new Date().getTime()),SwingConstants.CENTER);
         logout = new JButton("Log Out :(");
+
+        logout.addActionListener(SignIn_SignUpController.getUserSignUpController());
+        logout.setActionCommand("logout");
 
         panel.add(titlelabel);
         panel.add(idlabel);

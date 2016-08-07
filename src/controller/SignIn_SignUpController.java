@@ -10,6 +10,8 @@ import org.json.simple.parser.JSONParser;
 import view.primary.MainPanel;
 import view.primary.SignIn_SignUpForm;
 import view.mainForms.UserForm;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
@@ -124,6 +126,25 @@ public class SignIn_SignUpController implements ActionListener {
 
         u.getLastseenlabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
 //////////////////////////////////////////////
+
+    }
+
+    public void logout()throws Exception{
+        SignIn_SignUpManager signIn_signUpManager = SignIn_SignUpManagerImpl.getSignIn_signUpManager();
+
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog (null, "Log Out?","Warning",dialogButton);
+        if(dialogResult == JOptionPane.YES_OPTION){
+            HttpResponse<String> response = signIn_signUpManager.logOut();
+            System.out.println(response.getBody());
+            UserForm.getFrame().dispose();
+            MainPanel.getFrame().dispose();
+            new SignIn_SignUpForm();
+        }
+
+
+
+
 
 
     }
