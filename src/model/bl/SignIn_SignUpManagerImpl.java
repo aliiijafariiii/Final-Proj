@@ -38,6 +38,15 @@ public class SignIn_SignUpManagerImpl implements SignIn_SignUpManager {
     }
 
     @Override
+    public HttpResponse<String> ChecksignUp(String userJSON) throws Exception {
+        HttpResponse<String> response = Unirest.post(Utils.getUrlString() + "/users/check")
+                .header("content-type", "application/json")
+                .body(userJSON)
+                .asString();
+        return response;
+    }
+
+    @Override
     public HttpResponse<String> logOut() throws Exception {
         HttpResponse<String> response = Unirest.post(Utils.getUrlString() + "/logout")
                 .header("content-type", "application/json")

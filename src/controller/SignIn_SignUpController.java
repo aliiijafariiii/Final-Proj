@@ -92,6 +92,16 @@ public class SignIn_SignUpController implements ActionListener {
 
     public void signup()throws Exception{
 
+        JSONObject jsonCheeck = new JSONObject();
+        jsonCheeck.put("id",null);
+        jsonCheeck.put("userName", SignIn_SignUpForm.getNewUsername().getText());
+
+        SignIn_SignUpManager signIn_signUpManager = SignIn_SignUpManagerImpl.getSignIn_signUpManager();
+        HttpResponse<String> checkResponse = signIn_signUpManager.ChecksignUp(jsonCheeck.toJSONString());
+
+        if (checkResponse.getStatus()!=200 && Long.valueOf(checkResponse.getBody())!=0){
+
+
         JSONObject jsonObject = new JSONObject();
 
         jsonObject.put("id",null);
@@ -99,7 +109,6 @@ public class SignIn_SignUpController implements ActionListener {
         jsonObject.put("passWord", SignIn_SignUpForm.getNewPassword().getText());
         jsonObject.put("email", SignIn_SignUpForm.getNewEmail().getText());
 
-        SignIn_SignUpManager signIn_signUpManager = SignIn_SignUpManagerImpl.getSignIn_signUpManager();
         HttpResponse<String> response = signIn_signUpManager.signUp(jsonObject.toJSONString());
 
         JSONParser jsonParser = new JSONParser();
@@ -132,6 +141,13 @@ public class SignIn_SignUpController implements ActionListener {
 
         u.getLastseenlabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
 //////////////////////////////////////////////
+    }else{
+            JOptionPane.showMessageDialog(null,"Username is exist please try again");
+            SignIn_SignUpForm.getNewUsername().setText("");
+            SignIn_SignUpForm.getNewEmail().setText("");
+            SignIn_SignUpForm.getNewPassword().setText("");
+            SignIn_SignUpForm.getReNewPassword().setText("");
+        }
     }
 
     public void logout()throws Exception{
