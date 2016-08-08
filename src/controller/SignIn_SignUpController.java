@@ -99,8 +99,7 @@ public class SignIn_SignUpController implements ActionListener {
         SignIn_SignUpManager signIn_signUpManager = SignIn_SignUpManagerImpl.getSignIn_signUpManager();
         HttpResponse<String> checkResponse = signIn_signUpManager.ChecksignUp(jsonCheeck.toJSONString());
 
-        if (checkResponse.getStatus()!=200 && Long.valueOf(checkResponse.getBody())!=0){
-
+        if (Long.valueOf(checkResponse.getBody())==0){
 
         JSONObject jsonObject = new JSONObject();
 
