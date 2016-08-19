@@ -17,6 +17,16 @@ public class MessageManagerImpl implements MessageManager {
     public MessageManagerImpl() {
     }
 
+    @Override
+    public HttpResponse<String> getAllUsers() throws Exception {
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/users")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+
 
     @Override
     public HttpResponse<String> registerMessage(String MessageJSON) throws Exception {
@@ -27,6 +37,8 @@ public class MessageManagerImpl implements MessageManager {
                 .asString();
         return response;
     }
+
+
 
     @Override
     public HttpResponse<String> getAllFriends(long id) throws Exception {

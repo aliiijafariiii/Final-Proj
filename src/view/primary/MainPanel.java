@@ -109,12 +109,6 @@ public class MainPanel  {
             }
         });
 
-        massagingbtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new MassageFrom();
-            }
-        });
 
         feedbtn.addActionListener(PostController.getPostController());
         feedbtn.setActionCommand("FillNewsFeed");

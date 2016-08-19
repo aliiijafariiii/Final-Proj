@@ -1,5 +1,7 @@
 package view.mainForms;
 
+import controller.MessageController;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
@@ -14,9 +16,30 @@ public class MassageFrom {
     private static JButton sendbtn,exit,clear;
     private static JTextArea textArea;
     private static DefaultListModel<String>  historyDTM,friendDTM;
+    private static JList<String> friendList;
+    private static JLabel massageLabel;
+
+    public static JList<String> getHistoryList() {
+        return historyList;
+    }
+
+    public static void setHistoryList(JList<String> historyList) {
+        MassageFrom.historyList = historyList;
+    }
+
+    private static JList<String> historyList;
+
 
     public static JButton getSendbtn() {
         return sendbtn;
+    }
+
+    public static JList<String> getFriendList() {
+        return friendList;
+    }
+
+    public static void setFriendList(JList<String> friendList) {
+        MassageFrom.friendList = friendList;
     }
 
     public static void setSendbtn(JButton sendbtn) {
@@ -85,22 +108,14 @@ public class MassageFrom {
 
         historyDTM = new DefaultListModel<String>();
         friendDTM = new DefaultListModel<String>();
-        JList<String> historyList = new JList<>(historyDTM);
-        JList<String> friendList = new JList<>(friendDTM);
+        historyList = new JList<>(historyDTM);
+        friendList = new JList<>(friendDTM);
 
-
-        for (int i = 0 ; i<20;i++){
-            historyDTM.addElement(String.valueOf(i));
-            friendDTM.addElement(String.valueOf(i*10));
-        }
-
-
-        historyList.setFont(new Font(null,Font.BOLD,25));
+        historyList.setFont(new Font(null,0,20));
         historyList.setForeground(Color.red);
         historyList.setSelectedIndex(0);
 
-        friendList.setFont(new Font(null,Font.BOLD,25));
-        friendList.setForeground(Color.YELLOW);
+        friendList.setFont(new Font(null,0,20));
         friendList.setSelectedIndex(0);
 
         historyList.addMouseListener(new MouseListener() {
@@ -131,7 +146,7 @@ public class MassageFrom {
         panel4.setLayout(new GridLayout(4,1));
         panel4.setBorder(new TitledBorder("new message"));
 
-        JLabel jLabel = new JLabel("aaaa");
+        massageLabel = new JLabel();
 
         panel4.add(textArea);
         panel4.add(sendbtn);
@@ -139,7 +154,7 @@ public class MassageFrom {
         panel4.add(exit);
 
 
-        panel3.add(jLabel);
+        panel3.add(massageLabel);
         panel3.add(panel4);
 
 
@@ -163,6 +178,9 @@ public class MassageFrom {
                 textArea.setText("");
             }
         });
+
+        sendbtn.addActionListener(MessageController.getMessageController());
+        sendbtn.setActionCommand("SendNewMessage");
 
         frame.add(panel);
         frame.add(panel3);

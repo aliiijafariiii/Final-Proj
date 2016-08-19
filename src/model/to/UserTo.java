@@ -2,6 +2,7 @@ package model.to;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Ali on 2/11/2016.
@@ -15,6 +16,11 @@ public class UserTo implements Serializable {
     private static String email;
     private static String password;
     private static String picAddress;
+    //////////////////
+    private static List user_id_list;
+    private static List User_Username_list;
+
+
 
     public UserTo() {
     }
@@ -73,5 +79,23 @@ public class UserTo implements Serializable {
 
     public static void setPicAddress(String picAddress) {
         UserTo.picAddress = picAddress;
+    }
+
+    ///////////////////////////
+
+    public static List getUser_id_list() {
+        return user_id_list;
+    }
+
+    public static void setUser_id_list(List user_id_list) {
+        UserTo.user_id_list = user_id_list;
+    }
+
+    public static List getUser_Username_list() {
+        return User_Username_list;
+    }
+
+    public static void setUser_Username_list(List user_Username_list) {
+        User_Username_list = user_Username_list;
     }
 }
