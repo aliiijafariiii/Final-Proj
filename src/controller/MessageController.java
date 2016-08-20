@@ -8,6 +8,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import view.mainForms.MassageFrom;
+import view.mainForms.UserForm;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -52,10 +53,8 @@ public class MessageController implements ActionListener {
                 JSONObject jsonObject = jsonObjectIterator.next();
                 m.getFriendDTM().addElement(String.valueOf(jsonObject.get("id"))+"-"+String.valueOf(jsonObject.get("userName")));
             }
-
-
-
-    }}
+    }
+    }
 
     public void SendNewMessage() throws Exception {
         MessageManager messageManager = MessageManagerImpl.getMessageManager();
@@ -67,18 +66,21 @@ public class MessageController implements ActionListener {
         jsonObject2.put("id", UserTo.getId());
         jsonObject1.put("sender",jsonObject2);
         JSONObject jsonObject3 = new JSONObject();
-        /////inja bayad ba esme taraf ye get bere be server ta id bargarde
         String s = MassageFrom.getFriendDTM().getElementAt(MassageFrom.getFriendList().getSelectedIndex());
         String index = String.valueOf(s.charAt(0));
-        System.out.println(s);
-        System.out.println(index);
         jsonObject3.put("id",index);
         /////
         jsonObject1.put("reciver",jsonObject3);
-        System.out.println(jsonObject1.toJSONString());
         HttpResponse<String> response = messageManager.registerMessage(jsonObject1.toJSONString());
-
-
+        /////////////////////////
+        if (MassageFrom.getMassageLabel().getText().length()!=0){
+        int i = MassageFrom.getMassageLabel().getText().length();
+        String n = MassageFrom.getMassageLabel().getText().substring(6,i-7);
+        MassageFrom.getMassageLabel().setText("<html>"+n+"<br>"+ UserForm.getNamelabel().getText()+":"+MassageFrom.getTextArea().getText()+"</html>");
+        }else{
+            MassageFrom.getMassageLabel().setText("<html>"+ UserForm.getNamelabel().getText()+":"+MassageFrom.getTextArea().getText()+"</html>");
+        }
+        MassageFrom.getTextArea().setText("");
     }
 
     }

@@ -7,10 +7,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 public class MassageFrom {
     private static JButton sendbtn,exit,clear;
@@ -18,6 +15,16 @@ public class MassageFrom {
     private static DefaultListModel<String>  historyDTM,friendDTM;
     private static JList<String> friendList;
     private static JLabel massageLabel;
+
+
+
+    public static JLabel getMassageLabel() {
+        return massageLabel;
+    }
+
+    public static void setMassageLabel(JLabel massageLabel) {
+        MassageFrom.massageLabel = massageLabel;
+    }
 
     public static JList<String> getHistoryList() {
         return historyList;
@@ -104,8 +111,6 @@ public class MassageFrom {
         JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayout(2,1));
 
-
-
         historyDTM = new DefaultListModel<String>();
         friendDTM = new DefaultListModel<String>();
         historyList = new JList<>(historyDTM);
@@ -148,13 +153,16 @@ public class MassageFrom {
 
         massageLabel = new JLabel();
 
+        JScrollPane scroller = new JScrollPane(massageLabel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+
         panel4.add(textArea);
         panel4.add(sendbtn);
         panel4.add(clear);
         panel4.add(exit);
 
 
-        panel3.add(massageLabel);
+        panel3.add(scroller);
         panel3.add(panel4);
 
 
