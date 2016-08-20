@@ -17,6 +17,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.TimerTask;
 
 /**
  * Created by ali on 4/27/16.
@@ -44,6 +45,7 @@ public class MessageController implements ActionListener {
 
         MessageManager messageManager = MessageManagerImpl.getMessageManager();
         HttpResponse<String> usersFriend = messageManager.getAllUsers();
+        List bb = new ArrayList();
         JSONParser jsonParser = new JSONParser();
         if (!usersFriend.getBody().equals("[]")) {
             MassageFrom m = new MassageFrom();
@@ -51,10 +53,46 @@ public class MessageController implements ActionListener {
             Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
             while (jsonObjectIterator.hasNext()) {
                 JSONObject jsonObject = jsonObjectIterator.next();
-                m.getFriendDTM().addElement(String.valueOf(jsonObject.get("id"))+"-"+String.valueOf(jsonObject.get("userName")));
+                m.getFriendDTM().addElement(String.valueOf(jsonObject.get("id")) + "-" + String.valueOf(jsonObject.get("userName")));
+                bb.add(String.valueOf(jsonObject.get("id")) + "-" + String.valueOf(jsonObject.get("userName")));
+
             }
-    }
-    }
+        }
+        ////////////////////////
+        HttpResponse<String> UsersHistory = messageManager.getFriendsChatHistory(UserTo.getId());
+        if (!UsersHistory.getBody().equals("[]")) {
+        JSONArray jsonArray2 = (JSONArray) jsonParser.parse(UsersHistory.getBody());
+        Iterator<JSONObject> jsonObjectIterator2 = jsonArray2.iterator();
+        while (jsonObjectIterator2.hasNext()) {
+            JSONObject jsonObject2 = jsonObjectIterator2.next();
+            for (int i = 0;i<bb.size();i++){
+                String m = bb.get(i).toString();
+                int b = m.indexOf('-');
+                if (b!=1){
+                if (jsonObject2.get("id")==m.substring(0,b-1)) {
+                    MassageFrom.getHistoryDTM().addElement(String.valueOf(jsonObject2.get("id")) + "-" + m.substring(b + 1, m.length()));
+                    System.out.println(String.valueOf(jsonObject2.get("id")) + "-" + m.substring(b + 1, m.length()));
+                }
+                }else{
+                    MassageFrom.getHistoryDTM().addElement(String.valueOf(jsonObject2.get("id")) + "-" + m.substring(2, m.length()));
+                    System.out.println(String.valueOf(jsonObject2.get("id")) + "-" + m.substring(2, m.length()));
+                }
+                }
+            }
+
+        }
+            ////////////////////////
+//            TimerTask t = new TimerTask() {
+//                @Override
+//                public void run() {
+////                System.out.println("ali");
+//                }
+//            };
+//            java.util.Timer timer = new java.util.Timer();
+//            timer.schedule(t, 1000, 1000);
+        }
+
+
 
     public void SendNewMessage() throws Exception {
         MessageManager messageManager = MessageManagerImpl.getMessageManager();

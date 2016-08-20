@@ -39,7 +39,7 @@ public class MessageManagerImpl implements MessageManager {
     }
 
 
-
+///////////////////////////////////////////////////////////////
     @Override
     public HttpResponse<String> getAllFriends(long id) throws Exception {
         HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/users/"+id+"/friends")

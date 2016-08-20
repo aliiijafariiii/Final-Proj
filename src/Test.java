@@ -1,8 +1,23 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by ali on 4/8/16.
  */
 public class Test {
     public static void main(String[] args) throws Exception {
+//       TimerTask t = new TimerTask() {
+//           @Override
+//           public void run() {
+//               System.out.println("ali");
+//           }
+//       };
+//        Timer timer = new Timer();
+//        timer.schedule(t,1000,1000);
+
+
+
+
 ////        System.out.println(new Date().getTime());
 ////        Long l = 1460104224088L;
 ////

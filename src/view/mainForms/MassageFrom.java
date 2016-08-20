@@ -3,11 +3,13 @@ package view.mainForms;
 import controller.MessageController;
 
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class MassageFrom {
     private static JButton sendbtn,exit,clear;
@@ -142,6 +144,7 @@ public class MassageFrom {
             }
         });
 
+
         textArea = new JTextArea();
         sendbtn = new JButton("send");
         exit = new JButton("exit");
@@ -189,6 +192,7 @@ public class MassageFrom {
 
         sendbtn.addActionListener(MessageController.getMessageController());
         sendbtn.setActionCommand("SendNewMessage");
+
 
         frame.add(panel);
         frame.add(panel3);
