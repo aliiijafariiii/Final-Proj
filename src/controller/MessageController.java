@@ -26,6 +26,7 @@ public class MessageController implements ActionListener {
 
     private static MessageController messageController = new MessageController();
     public static MessageController getMessageController() {
+
         return messageController;
     }
     public MessageController() {
