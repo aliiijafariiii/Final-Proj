@@ -267,7 +267,7 @@ public class SignIn_SignUpForm {
 
         tp.add(panel2);
         tp.setTitleAt(1, "Sign Up");
-
+        frame.setUndecorated(true);
         frame.add(tp);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);

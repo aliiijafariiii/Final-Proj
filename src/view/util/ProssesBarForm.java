@@ -28,6 +28,7 @@ public class ProssesBarForm {
         jFrame.setSize(300,50);
         jFrame.setVisible(true);
         jFrame.setLocationRelativeTo(null);
+        jFrame.setUndecorated(true);
         jFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
     }
