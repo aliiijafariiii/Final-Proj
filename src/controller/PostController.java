@@ -88,38 +88,48 @@ public class PostController implements ActionListener {
         List<JSONObject> postJson = new ArrayList<JSONObject>();
         JSONParser jsonParser = new JSONParser();
         if (!postsResponse.getBody().equals("[]")) {
+            ////
+            System.out.println(postsResponse.getStatus());
+            System.out.println(postsResponse.getStatusText());
+            ////
             JSONArray jsonArray = (JSONArray) jsonParser.parse(postsResponse.getBody());
             Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
             while (jsonObjectIterator.hasNext()) {
                 JSONObject jsonObject = jsonObjectIterator.next();
                 postJson.add(jsonObject);
+                /////
+                System.out.println(jsonObject.toJSONString());
+                /////
             }
+            PostJsonTo postJsonTo = new PostJsonTo();
+            postJsonTo.setPostsJson(postJson);
+
+            FeedForm feedForm = new FeedForm();
+            JSONParser jp = new JSONParser();
+            JSONObject pp = (JSONObject) jp.parse(String.valueOf(postJson.get(0)));
+
+            ImageIcon image = postManager.getImage(String.valueOf(pp.get("picAddress")));
+            feedForm.getImagelabel().setIcon(image);
+            feedForm.getContentlabel().setText(String.valueOf(pp.get("content")));
+
+            Date d = new Date((Long) pp.get("publishDate"));
+            DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+            DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+            feedForm.getTimelabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
+            feedForm.getPostIdlabel().setText(String.valueOf(pp.get("id")));
+
+
+            PostTo postTo = new PostTo();
+            postTo.setContent(String.valueOf(pp.get("content")));
+            postTo.setId((Long) pp.get("id"));
+            postTo.setPublishDate((Long) pp.get("publishDate"));
+            postTo.setIndex(0);
+            postTo.setPicAddress(String.valueOf(pp.get("picAddress")));
+        }else{
+            JOptionPane.showMessageDialog(null,"<html>There is no post to show!<br>Please upload new post or wait for friends posts</html> ");
         }
 
-        PostJsonTo postJsonTo = new PostJsonTo();
-        postJsonTo.setPostsJson(postJson);
 
-        FeedForm feedForm = new FeedForm();
-        JSONParser jp = new JSONParser();
-        JSONObject pp = (JSONObject) jp.parse(String.valueOf(postJson.get(0)));
-
-        ImageIcon image = postManager.getImage(String.valueOf(pp.get("picAddress")));
-        feedForm.getImagelabel().setIcon(image);
-        feedForm.getContentlabel().setText(String.valueOf(pp.get("content")));
-
-        Date d = new Date((Long) pp.get("publishDate"));
-        DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
-        DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
-        feedForm.getTimelabel().setText(dateFormat1.format(d)+" "+dateFormat2.format(d));
-        feedForm.getPostIdlabel().setText(String.valueOf(pp.get("id")));
-
-
-        PostTo postTo = new PostTo();
-        postTo.setContent(String.valueOf(pp.get("content")));
-        postTo.setId((Long) pp.get("id"));
-        postTo.setPublishDate((Long) pp.get("publishDate"));
-        postTo.setIndex(0);
-        postTo.setPicAddress(String.valueOf(pp.get("picAddress")));
 
     }
     public void NextButton_FillNewsFeed() throws Exception{
@@ -198,8 +208,7 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
         JSONArray jsonArray = new JSONArray();
         jsonObject1.put("id", null);
         jsonObject2.put("id",FeedForm.getPostIdlabel().getText());
-        jsonArray.add(jsonObject2);
-        jsonObject1.put("posts", jsonArray);
+        jsonObject1.put("post", jsonObject2);
         jsonObject3.put("id", UserTo.getId());
         jsonObject1.put("lover", jsonObject3);
 
@@ -220,8 +229,7 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
         JSONArray jsonArray = new JSONArray();
         jsonObject1.put("id", null);
         jsonObject2.put("id",FeedForm.getPostIdlabel().getText());
-        jsonArray.add(jsonObject2);
-        jsonObject1.put("posts", jsonArray);
+        jsonObject1.put("post", jsonObject2);
         jsonObject3.put("id", UserTo.getId());
         jsonObject1.put("disliker", jsonObject3);
 
