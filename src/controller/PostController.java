@@ -1,5 +1,6 @@
 package controller;
 import com.mashape.unirest.http.HttpResponse;
+import jdk.nashorn.internal.ir.WhileNode;
 import model.bl.PostManager;
 import model.bl.PostManagerImpl;
 import model.to.PostJsonTo;
@@ -14,6 +15,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import view.mainForms.FeedForm;
 import view.mainForms.UploadForm;
+import view.util.ListForm;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,12 +44,6 @@ public class PostController implements ActionListener {
             e1.printStackTrace();
         }
     }
-
-
-
-
-
-
 
     public void SendNewPost() throws Exception {
 
@@ -200,7 +196,7 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
     public void SendNewLike() throws Exception{
         PostManager postManager = PostManagerImpl.getPostManager();
 
-
+        if (!FeedForm.getLikeBtn().getBackground().equals(Color.green)){
 
         JSONObject jsonObject1 = new JSONObject();
         JSONObject jsonObject2 = new JSONObject();
@@ -217,11 +213,26 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
         HttpResponse<String> FullResponse = postManager.addPostsLikes(jsonObject1.toJSONString());
         if (FullResponse.getStatus() == 200){
             FeedForm.getLikeBtn().setBackground(Color.green);
+            }
+        }else{
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialog =  JOptionPane.showConfirmDialog(null,"Do you want to remove your like?","Question",dialogButton);
+            if(dialog == JOptionPane.YES_OPTION) {
+                HttpResponse<String> removeres = postManager.removePostsLikes(Long.parseLong(FeedForm.getPostIdlabel().getText()));
+                if(removeres.getStatus()==200) {
+                    System.out.println("removed");
+                    FeedForm.getLikeBtn().setBackground(new Color(235, 215, 55));
+                }
+            }
+                if(dialog == JOptionPane.NO_OPTION) {
+                    System.out.println("cencel");
+                }
         }
     }
-
     public void SendNewDislike() throws Exception{
         PostManager postManager = PostManagerImpl.getPostManager();
+
+        if (!FeedForm.getLikeBtn().getBackground().equals(Color.green)){
 
         JSONObject jsonObject1 = new JSONObject();
         JSONObject jsonObject2 = new JSONObject();
@@ -239,9 +250,22 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
         if (FullResponse.getStatus() == 200){
             FeedForm.getDislikeBtn().setBackground(Color.green);
         }
+        }else{
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialog =  JOptionPane.showConfirmDialog(null,"Do you want to remove your dislike?","Question",dialogButton);
+            if(dialog == JOptionPane.YES_OPTION) {
+                HttpResponse<String> removeres = postManager.removePostsDislikes(Long.parseLong(FeedForm.getPostIdlabel().getText()));
+                System.out.println(removeres);
+                if(removeres.getStatus()==200) {
+                    System.out.println("removed");
+                    FeedForm.getLikeBtn().setBackground(new Color(235, 215, 55));
+                }
+            }
+            if(dialog == JOptionPane.NO_OPTION) {
+                System.out.println("cencel");
+            }
+        }
     }
-
-
     public void SendNewComment() throws Exception{
         PostManager postManager = PostManagerImpl.getPostManager();
 
@@ -266,55 +290,60 @@ if (postTo.getIndex()+1<postJsonTo.getPostsJson().size()) {
         }
     }
 /////////////////////////////////////////////////////////////////////////////
+
     public void ShowLikes() throws Exception{
 
         PostManager postManager = PostManagerImpl.getPostManager();
-        HttpResponse<String> response = postManager.getPostsLikes(0);
-
-//        List<JSONObject> postJson = new ArrayList<JSONObject>();
+        HttpResponse<String> response = postManager.getPostsLikes(Long.parseLong(FeedForm.getPostIdlabel().getText()));
+        System.out.println(response.getBody());
+        new ListForm();
         JSONParser jsonParser = new JSONParser();
-        if (!response.getBody().equals("[]")) {
+        if (!response.getBody().equals("[]")&&response.getStatus()==200) {
             JSONArray jsonArray = (JSONArray) jsonParser.parse(response.getBody());
             Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
             while (jsonObjectIterator.hasNext()) {
                 JSONObject jsonObject = jsonObjectIterator.next();
-//                postJson.add(jsonObject);
+                String s =  jsonObject.get("lover").toString();
+                ListForm.getUsersDTM().addElement(s.substring(15,s.length()-1));
+                ListForm.getjFrame().setTitle("Likers");
+                }
             }
         }
-    }
 
     public void ShowDislikes() throws Exception{
 
         PostManager postManager = PostManagerImpl.getPostManager();
-        HttpResponse<String> response = postManager.getPostsDislikes(0);
-
-        //        List<JSONObject> postJson = new ArrayList<JSONObject>();
+        HttpResponse<String> response = postManager.getPostsDislikes(Long.parseLong(FeedForm.getPostIdlabel().getText()));
+        System.out.println(response.getBody());
+new ListForm();
         JSONParser jsonParser = new JSONParser();
-        if (!response.getBody().equals("[]")) {
+        if (!response.getBody().equals("[]")&&response.getStatus()==200) {
             JSONArray jsonArray = (JSONArray) jsonParser.parse(response.getBody());
             Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
             while (jsonObjectIterator.hasNext()) {
                 JSONObject jsonObject = jsonObjectIterator.next();
-//                postJson.add(jsonObject);
+                String s =  jsonObject.get("disliker").toString();
+                ListForm.getUsersDTM().addElement(s.substring(15,s.length()-1));
+                ListForm.getjFrame().setTitle("Dislikers");
             }
         }
     }
 
-    public void ShowComments() throws Exception{
-
-        PostManager postManager = PostManagerImpl.getPostManager();
-        HttpResponse<String> response = postManager.getPostsLikes(0);
-
-        //        List<JSONObject> postJson = new ArrayList<JSONObject>();
-        JSONParser jsonParser = new JSONParser();
-        if (!response.getBody().equals("[]")) {
-            JSONArray jsonArray = (JSONArray) jsonParser.parse(response.getBody());
-            Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
-            while (jsonObjectIterator.hasNext()) {
-                JSONObject jsonObject = jsonObjectIterator.next();
-//                postJson.add(jsonObject);
-            }
-        }
-    }
+//    public void ShowComments() throws Exception{
+//
+//        PostManager postManager = PostManagerImpl.getPostManager();
+//        HttpResponse<String> response = postManager.getPostsLikes(0);
+//
+//        //        List<JSONObject> postJson = new ArrayList<JSONObject>();
+//        JSONParser jsonParser = new JSONParser();
+//        if (!response.getBody().equals("[]")) {
+//            JSONArray jsonArray = (JSONArray) jsonParser.parse(response.getBody());
+//            Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
+//            while (jsonObjectIterator.hasNext()) {
+//                JSONObject jsonObject = jsonObjectIterator.next();
+////                postJson.add(jsonObject);
+//            }
+//        }
+//    }
 }
 

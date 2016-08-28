@@ -104,7 +104,7 @@ public class PostManagerImpl implements PostManager {
 
     @Override
     public HttpResponse<String> getPostsLikes(long post_id) throws Exception {
-        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/posts/"+post_id+"/loves")
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/loves/"+post_id)
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN",UserTo.getAuthToken())
                 .asString();
@@ -113,7 +113,7 @@ public class PostManagerImpl implements PostManager {
 
     @Override
     public HttpResponse<String> getPostsDislikes(long post_id) throws Exception {
-        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/posts/"+post_id+"/dislikes")
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/dislikes/"+post_id)
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN",UserTo.getAuthToken())
                 .asString();

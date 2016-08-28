@@ -211,6 +211,12 @@ public class FeedForm {
         CommentBtn.addActionListener(PostController.getPostController());
         CommentBtn.setActionCommand("SendNewComment");
 
+        likersBtn.addActionListener(PostController.getPostController());
+        likersBtn.setActionCommand("ShowLikes");
+
+        dislikersBtn.addActionListener(PostController.getPostController());
+        dislikersBtn.setActionCommand("ShowDislikes");
+
 
         frame.add(imagelabel);
         frame.add(panel4);
