@@ -10,6 +10,7 @@ import java.io.File;
  * Created by ali on 1/24/2016.
  */
 public interface PostManager {
+
     public HttpResponse<String> registerPostFull(String postJSON) throws Exception;
     public CloseableHttpResponse registerPostFile(File file) throws Exception;
     public HttpResponse<String> registerTags(String TagsJSON) throws Exception;
@@ -17,6 +18,7 @@ public interface PostManager {
     public HttpResponse<String> getTagsByname(String name) throws Exception;
     public HttpResponse<String> getPostsByTime() throws Exception;
     public ImageIcon getImage(String url) throws Exception;
+    public HttpResponse<String> getAllUsers() throws Exception ;
 
     public HttpResponse<String> getPostsLikes(long post_id) throws Exception;
     public HttpResponse<String> getPostsDislikes(long post_id) throws Exception;
@@ -30,7 +32,7 @@ public interface PostManager {
     public HttpResponse<String> addPostsDislikes(String json) throws Exception;
     public HttpResponse<String> addPostsComments(String json) throws Exception;
 
-    public HttpResponse<String> getAllUsers() throws Exception ;
+
 
 
 }

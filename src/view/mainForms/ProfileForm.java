@@ -1,5 +1,6 @@
 package view.mainForms;
 
+import controller.ProfileController;
 import model.util.Utils;
 
 import javax.imageio.ImageIO;
@@ -17,6 +18,61 @@ public class ProfileForm {
     private static File image;
     private static JLabel imagelabel,fasele;
     private static JButton postsbtn,friendsbtn,aboutbtn,changeimagebtn,editprofilebtn,exitbtn;
+
+    public static File getImage() {
+        return image;
+    }
+    public static void setImage(File image) {
+        ProfileForm.image = image;
+    }
+    public static JLabel getImagelabel() {
+        return imagelabel;
+    }
+    public static void setImagelabel(JLabel imagelabel) {
+        ProfileForm.imagelabel = imagelabel;
+    }
+    public static JLabel getFasele() {
+        return fasele;
+    }
+    public static void setFasele(JLabel fasele) {
+        ProfileForm.fasele = fasele;
+    }
+    public static JButton getPostsbtn() {
+        return postsbtn;
+    }
+    public static void setPostsbtn(JButton postsbtn) {
+        ProfileForm.postsbtn = postsbtn;
+    }
+    public static JButton getFriendsbtn() {
+        return friendsbtn;
+    }
+    public static void setFriendsbtn(JButton friendsbtn) {
+        ProfileForm.friendsbtn = friendsbtn;
+    }
+    public static JButton getAboutbtn() {
+        return aboutbtn;
+    }
+    public static void setAboutbtn(JButton aboutbtn) {
+        ProfileForm.aboutbtn = aboutbtn;
+    }
+    public static JButton getChangeimagebtn() {
+        return changeimagebtn;
+    }
+    public static void setChangeimagebtn(JButton changeimagebtn) {
+        ProfileForm.changeimagebtn = changeimagebtn;
+    }
+    public static JButton getEditprofilebtn() {
+        return editprofilebtn;
+    }
+    public static void setEditprofilebtn(JButton editprofilebtn) {
+        ProfileForm.editprofilebtn = editprofilebtn;
+    }
+    public static JButton getExitbtn() {
+        return exitbtn;
+    }
+    public static void setExitbtn(JButton exitbtn) {
+        ProfileForm.exitbtn = exitbtn;
+    }
 
     public ProfileForm() {
 
@@ -60,7 +116,7 @@ public class ProfileForm {
         editprofilebtn.setBackground(new Color(29, 105, 0));
         editprofilebtn.setForeground(Color.white);
 
-        exitbtn = new JButton("Exit");
+        exitbtn = new JButton("Save & Exit");
         exitbtn.setBackground(new Color(29, 105, 0));
         exitbtn.setForeground(Color.white);
 
@@ -95,12 +151,8 @@ public class ProfileForm {
             }
         });
 
-        exitbtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-            }
-        });
+        exitbtn.addActionListener(ProfileController.getPostController());
+        exitbtn.setActionCommand("");
 
         JPanel panel3 = new JPanel();
         panel3.setLayout(new GridLayout(3,1));

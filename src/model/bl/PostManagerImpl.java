@@ -40,7 +40,6 @@ public class PostManagerImpl implements PostManager {
 
         return response;
     }
-
     @Override
     public CloseableHttpResponse registerPostFile(File file) throws Exception {
 
@@ -55,7 +54,6 @@ public class PostManagerImpl implements PostManager {
 
             return uploadResponse;
     }
-
     @Override
     public HttpResponse<String> registerTags(String TagsJSON) throws Exception {
 
@@ -66,7 +64,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> getTags() throws Exception {
         HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/tags")
@@ -75,7 +72,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> getTagsByname(String name) throws Exception {
         HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/tags/"+name)
@@ -84,7 +80,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> getPostsByTime() throws Exception {
         HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/posts/"+new Date().getTime()+"/string")
@@ -93,7 +88,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public ImageIcon getImage(String url) throws Exception {
         URL u = new URL(Utils.getUrlString()+"/assets"+url);
@@ -101,7 +95,6 @@ public class PostManagerImpl implements PostManager {
         ImageIcon icon = new ImageIcon(image);
         return icon;
     }
-
     @Override
     public HttpResponse<String> getPostsLikes(long post_id) throws Exception {
         HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/loves/"+post_id)
@@ -110,7 +103,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> getPostsDislikes(long post_id) throws Exception {
         HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/dislikes/"+post_id)
@@ -119,7 +111,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> getPostsComments(long post_id) throws Exception {
         HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/comments/"+post_id)
@@ -128,7 +119,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> removePostsLikes(long post_id) throws Exception {
         HttpResponse<String> response = Unirest.post(Utils.getUrlString()+"/loves/"+post_id)
@@ -138,7 +128,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> removePostsDislikes(long post_id) throws Exception {
         HttpResponse<String> response = Unirest.post(Utils.getUrlString()+"/dislikes/"+post_id)
@@ -148,7 +137,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> removePostsComments(long post_id) throws Exception {
         HttpResponse<String> response = Unirest.delete(Utils.getUrlString()+"/comments/"+post_id)
@@ -157,7 +145,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> addPostsLikes(String json) throws Exception {
         HttpResponse<String> response = Unirest.post(Utils.getUrlString()+"/loves")
@@ -167,7 +154,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> addPostsDislikes(String json) throws Exception {
         HttpResponse<String> response = Unirest.post(Utils.getUrlString()+"/dislikes")
@@ -177,7 +163,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> addPostsComments(String json) throws Exception {
         HttpResponse<String> response = Unirest.post(Utils.getUrlString()+"/comments")
@@ -187,7 +172,6 @@ public class PostManagerImpl implements PostManager {
                 .asString();
         return response;
     }
-
     @Override
     public HttpResponse<String> getAllUsers() throws Exception {
         HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/users")

@@ -90,18 +90,12 @@ public class PostController implements ActionListener {
         List<JSONObject> postJson = new ArrayList<JSONObject>();
         JSONParser jsonParser = new JSONParser();
         if (!postsResponse.getBody().equals("[]")) {
-            ////
-            System.out.println(postsResponse.getStatus());
-            System.out.println(postsResponse.getStatusText());
-            ////
+
             JSONArray jsonArray = (JSONArray) jsonParser.parse(postsResponse.getBody());
             Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
             while (jsonObjectIterator.hasNext()) {
                 JSONObject jsonObject = jsonObjectIterator.next();
                 postJson.add(jsonObject);
-                /////
-                System.out.println(jsonObject.toJSONString());
-                /////
             }
             PostJsonTo postJsonTo = new PostJsonTo();
             postJsonTo.setPostsJson(postJson);
@@ -119,7 +113,6 @@ public class PostController implements ActionListener {
             DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
             feedForm.getTimelabel().setText(dateFormat1.format(d) + " " + dateFormat2.format(d));
             feedForm.getPostIdlabel().setText(String.valueOf(pp.get("id")));
-
 
             PostTo postTo = new PostTo();
             postTo.setContent(String.valueOf(pp.get("content")));
@@ -154,7 +147,6 @@ public class PostController implements ActionListener {
             FeedForm.getPostIdlabel().setText(String.valueOf(pp.get("id")));
 
             postTo.setIndex(postTo.getIndex() + 1);
-
             postTo.setContent(String.valueOf(pp.get("content")));
             postTo.setId((Long) pp.get("id"));
             postTo.setPublishDate((Long) pp.get("publishDate"));
@@ -167,16 +159,13 @@ public class PostController implements ActionListener {
 
     public void PrivousButton_FillNewsFeed() throws Exception {
 
-
         PostJsonTo postJsonTo = new PostJsonTo();
         PostTo postTo = new PostTo();
-
 
         if (postTo.getIndex() > 0) {
 
             JSONParser jp = new JSONParser();
             JSONObject pp = (JSONObject) jp.parse(String.valueOf(postJsonTo.getPostsJson().get((int) postTo.getIndex() - 1)));
-
 
             PostManager postManager = PostManagerImpl.getPostManager();
             ImageIcon image = postManager.getImage(String.valueOf(pp.get("picAddress")));
@@ -190,7 +179,6 @@ public class PostController implements ActionListener {
             FeedForm.getPostIdlabel().setText(String.valueOf(pp.get("id")));
 
             postTo.setIndex(postTo.getIndex() - 1);
-
             postTo.setContent(String.valueOf(pp.get("content")));
             postTo.setId((Long) pp.get("id"));
             postTo.setPublishDate((Long) pp.get("publishDate"));
@@ -363,7 +351,6 @@ public class PostController implements ActionListener {
                 }
             }
         }
-
     }
 
     public void ShowComments() throws Exception {
@@ -394,7 +381,6 @@ public class PostController implements ActionListener {
                 }
             }
         }
-
     }
 }
 
