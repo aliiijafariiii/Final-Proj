@@ -217,6 +217,9 @@ public class FeedForm {
         dislikersBtn.addActionListener(PostController.getPostController());
         dislikersBtn.setActionCommand("ShowDislikes");
 
+        CommentersBtn.addActionListener(PostController.getPostController());
+        CommentersBtn.setActionCommand("ShowComments");
+
 
         frame.add(imagelabel);
         frame.add(panel4);

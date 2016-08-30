@@ -46,10 +46,7 @@ public class ListForm {
 
         panel.add(new JScrollPane(userList));
 
-
-
         jFrame.add(panel);
-//        jFrame.setUndecorated(true);
         jFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         jFrame.setSize(150, 250);
         jFrame.setVisible(true);

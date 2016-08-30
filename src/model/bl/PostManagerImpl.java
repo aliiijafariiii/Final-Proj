@@ -122,7 +122,7 @@ public class PostManagerImpl implements PostManager {
 
     @Override
     public HttpResponse<String> getPostsComments(long post_id) throws Exception {
-        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/posts/"+post_id+"/comments")
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/comments/"+post_id)
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN",UserTo.getAuthToken())
                 .asString();
@@ -131,18 +131,20 @@ public class PostManagerImpl implements PostManager {
 
     @Override
     public HttpResponse<String> removePostsLikes(long post_id) throws Exception {
-        HttpResponse<String> response = Unirest.delete(Utils.getUrlString()+"/loves/"+post_id)
+        HttpResponse<String> response = Unirest.post(Utils.getUrlString()+"/loves/"+post_id)
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .body("[]")
                 .asString();
         return response;
     }
 
     @Override
     public HttpResponse<String> removePostsDislikes(long post_id) throws Exception {
-        HttpResponse<String> response = Unirest.delete(Utils.getUrlString()+"/dislikes/"+post_id)
+        HttpResponse<String> response = Unirest.post(Utils.getUrlString()+"/dislikes/"+post_id)
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .body("[]")
                 .asString();
         return response;
     }
@@ -186,5 +188,13 @@ public class PostManagerImpl implements PostManager {
         return response;
     }
 
+    @Override
+    public HttpResponse<String> getAllUsers() throws Exception {
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/users")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
 
 }

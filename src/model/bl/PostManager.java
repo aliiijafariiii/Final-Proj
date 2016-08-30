@@ -30,6 +30,7 @@ public interface PostManager {
     public HttpResponse<String> addPostsDislikes(String json) throws Exception;
     public HttpResponse<String> addPostsComments(String json) throws Exception;
 
+    public HttpResponse<String> getAllUsers() throws Exception ;
 
 
 }
