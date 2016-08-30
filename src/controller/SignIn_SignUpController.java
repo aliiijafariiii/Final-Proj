@@ -66,6 +66,7 @@ public class SignIn_SignUpController implements ActionListener {
                 userTo.setAuthToken((String) jsonObject2.get("authToken"));
                 UserTo.setLastSeen((Long) jsonObject2.get("lastSeen"));
                 userTo.setPicAddress((String) jsonObject2.get("picAddress"));
+                userTo.setDetails((String) jsonObject.get("details"));
 
                 BufferedWriter writer = new BufferedWriter(new FileWriter(Utils.getAddressString()+"/a.txt"));
                 writer.write(userTo.getAuthToken());
@@ -120,6 +121,7 @@ public class SignIn_SignUpController implements ActionListener {
         UserTo.setEmail((String) jsonObject2.get("email"));
         UserTo.setPassword((String) jsonObject2.get("passWord"));
         UserTo.setPicAddress((String) jsonObject2.get("PicAddress"));
+        UserTo.setDetails((String) jsonObject2.get("details"));
 
         BufferedWriter writer = new BufferedWriter(new FileWriter(Utils.getAddressString()+"/a.txt"));
         writer.write(UserTo.getAuthToken());

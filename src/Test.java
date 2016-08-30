@@ -1,3 +1,5 @@
+import view.mainForms.ProfileForm;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -6,14 +8,7 @@ import java.util.TimerTask;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-//       TimerTask t = new TimerTask() {
-//           @Override
-//           public void run() {
-//               System.out.println("ali");
-//           }
-//       };
-//        Timer timer = new Timer();
-//        timer.schedule(t,1000,1000);
+       new ProfileForm();
 
 
 

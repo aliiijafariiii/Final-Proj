@@ -16,6 +16,7 @@ public class UserTo implements Serializable {
     private static String email;
     private static String password;
     private static String picAddress;
+    private static String details;
     //////////////////
     private static List user_id_list;
     private static List User_Username_list;
@@ -23,6 +24,14 @@ public class UserTo implements Serializable {
 
 
     public UserTo() {
+    }
+
+    public static String getDetails() {
+        return details;
+    }
+
+    public static void setDetails(String details) {
+        UserTo.details = details;
     }
 
     public static Long getLastSeen() {

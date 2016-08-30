@@ -1,6 +1,7 @@
 package view.mainForms;
 
 import controller.ProfileController;
+import model.to.UserTo;
 import model.util.Utils;
 
 import javax.imageio.ImageIO;
@@ -150,6 +151,21 @@ public class ProfileForm {
                 }
             }
         });
+
+        aboutbtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, UserTo.getDetails(),"read",JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+//        editprofilebtn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//               String  s = JOptionPane.showInputDialog(null, "please write your text", "");
+//
+//            }
+//        });
 
         exitbtn.addActionListener(ProfileController.getPostController());
         exitbtn.setActionCommand("");
