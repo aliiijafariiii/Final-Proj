@@ -1,4 +1,6 @@
 import view.mainForms.ProfileForm;
+import view.mainForms.ReviewForm;
+import view.util.SearchForm;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -8,7 +10,7 @@ import java.util.TimerTask;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-       new ProfileForm();
+       new ReviewForm();
 
 
 

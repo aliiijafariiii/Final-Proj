@@ -4,6 +4,7 @@ import controller.MessageController;
 import controller.PostController;
 import model.util.Utils;
 import view.mainForms.*;
+import view.util.SearchForm;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
@@ -27,11 +28,12 @@ public class MainPanel  {
 
     public MainPanel() {
         frame = new JFrame();
-        frame.setLayout(new GridLayout(1, 8));
+//        frame.setLayout(new GridLayout(1, 8));
+        frame.setLayout(new GridLayout(1, 7));
 
         profilebtn = new JButton();
         feedbtn= new JButton();
-        friendbtn= new JButton();
+//        friendbtn= new JButton();
         massagingbtn= new JButton();
         uploadbtn= new JButton();
         searchbtn= new JButton();
@@ -40,7 +42,7 @@ public class MainPanel  {
 
         ImageIcon profileicon = new ImageIcon(Utils.getAddressString()+"/iconss/profile.png");
         ImageIcon feedicon = new ImageIcon(Utils.getAddressString()+"/iconss/news.png");
-        ImageIcon friendicon = new ImageIcon(Utils.getAddressString()+"/iconss/friend.png");
+//        ImageIcon friendicon = new ImageIcon(Utils.getAddressString()+"/iconss/friend.png");
         ImageIcon massageicon = new ImageIcon(Utils.getAddressString()+"/iconss/message.png");
         ImageIcon uploadicon = new ImageIcon(Utils.getAddressString()+"/iconss/upload.png");
         ImageIcon searchicon = new ImageIcon(Utils.getAddressString()+"/iconss/search.png");
@@ -57,10 +59,10 @@ public class MainPanel  {
         feedbtn.setContentAreaFilled(false);
         feedbtn.setToolTipText("See News Feed");
 
-        friendbtn.setIcon(friendicon);
-        friendbtn.setFocusPainted(false);
-        friendbtn.setContentAreaFilled(false);
-        friendbtn.setToolTipText("See your Friends And Relationship");
+//        friendbtn.setIcon(friendicon);
+//        friendbtn.setFocusPainted(false);
+//        friendbtn.setContentAreaFilled(false);
+//        friendbtn.setToolTipText("See your Friends And Relationship");
 
         massagingbtn.setIcon(massageicon);
         massagingbtn.setFocusPainted(false);
@@ -116,22 +118,31 @@ public class MainPanel  {
         massagingbtn.addActionListener(MessageController.getMessageController());
         massagingbtn.setActionCommand("OpenMessageForm");
 
+        searchbtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new SearchForm();
+            }
+        });
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         double w = screenSize.getWidth();
 
         frame.add(profilebtn);
         frame.add(feedbtn);
-        frame.add(friendbtn);
+//        frame.add(friendbtn);
         frame.add(massagingbtn);
         frame.add(uploadbtn);
         frame.add(searchbtn);
         frame.add(settingbtn);
         frame.add(exitbtn);
 
-        frame.setLocation((int) ((w-800)/2),0);
+//        frame.setLocation((int) ((w-800)/2),0);
+        frame.setLocation((int) ((w-700)/2),0);
         frame.setUndecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 100);
+        frame.setSize(700, 100);
+//        frame.setSize(800, 100);
         frame.setVisible(true);
         frame.setResizable(false);
     }

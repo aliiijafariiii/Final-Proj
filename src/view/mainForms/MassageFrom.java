@@ -1,15 +1,10 @@
 package view.mainForms;
 
 import controller.MessageController;
-
 import javax.swing.*;
-import javax.swing.Timer;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 public class MassageFrom {
     private static JButton sendbtn,exit,clear;
@@ -17,8 +12,7 @@ public class MassageFrom {
     private static DefaultListModel<String>  historyDTM,friendDTM;
     private static JList<String> friendList;
     private static JLabel massageLabel;
-
-
+    private static JList<String> historyList;
 
     public static JLabel getMassageLabel() {
         return massageLabel;
@@ -35,9 +29,6 @@ public class MassageFrom {
     public static void setHistoryList(JList<String> historyList) {
         MassageFrom.historyList = historyList;
     }
-
-    private static JList<String> historyList;
-
 
     public static JButton getSendbtn() {
         return sendbtn;
@@ -119,11 +110,14 @@ public class MassageFrom {
         friendList = new JList<>(friendDTM);
 
         historyList.setFont(new Font(null,0,20));
-        historyList.setForeground(Color.red);
+        historyList.setForeground(new Color(255, 22, 64));
+        historyList.setBackground(Color.white);
         historyList.setSelectedIndex(0);
 
         friendList.setFont(new Font(null,0,20));
         friendList.setSelectedIndex(0);
+        friendList.setBackground(new Color(255, 22, 64));
+        friendList.setForeground(Color.white);
 
         historyList.addMouseListener(new MouseListener() {
             @Override
@@ -144,11 +138,18 @@ public class MassageFrom {
             }
         });
 
-
         textArea = new JTextArea();
         sendbtn = new JButton("send");
+        sendbtn.setBackground(new Color(255, 22, 64));
+        sendbtn.setForeground(Color.white);
+
         exit = new JButton("exit");
+        exit.setBackground(new Color(255, 22, 64));
+        exit.setForeground(Color.white);
+
         clear = new JButton("clear");
+        clear.setBackground(new Color(255, 22, 64));
+        clear.setForeground(Color.white);
 
         JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayout(4,1));
@@ -158,23 +159,19 @@ public class MassageFrom {
 
         JScrollPane scroller = new JScrollPane(massageLabel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
-
         panel4.add(textArea);
         panel4.add(sendbtn);
         panel4.add(clear);
         panel4.add(exit);
 
-
         panel3.add(scroller);
         panel3.add(panel4);
-
 
         panel1.add(new JScrollPane(historyList));
         panel2.add(new JScrollPane(friendList));
 
         panel.add(panel2);
         panel.add(panel1);
-
 
         exit.addActionListener(new ActionListener() {
             @Override
@@ -192,7 +189,6 @@ public class MassageFrom {
 
         sendbtn.addActionListener(MessageController.getMessageController());
         sendbtn.setActionCommand("SendNewMessage");
-
 
         frame.add(panel);
         frame.add(panel3);
