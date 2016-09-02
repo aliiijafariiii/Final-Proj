@@ -19,6 +19,7 @@ public interface PostManager {
     public HttpResponse<String> getPostsByTime() throws Exception;
     public ImageIcon getImage(String url) throws Exception;
     public HttpResponse<String> getAllUsers() throws Exception ;
+    public HttpResponse<String> getPostsOfUser(long user_id) throws Exception ;
 
     public HttpResponse<String> getPostsLikes(long post_id) throws Exception;
     public HttpResponse<String> getPostsDislikes(long post_id) throws Exception;

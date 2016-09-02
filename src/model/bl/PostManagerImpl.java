@@ -181,4 +181,13 @@ public class PostManagerImpl implements PostManager {
         return response;
     }
 
+    @Override
+    public HttpResponse<String> getPostsOfUser(long user_id) throws Exception {
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/users/"+user_id+"/posts")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
 }

@@ -2,6 +2,7 @@ package model.bl;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import model.to.UserTo;
 import model.util.Utils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.http.HttpEntity;
@@ -52,5 +53,32 @@ public class UserManagerImpl implements UserManager {
         CloseableHttpResponse uploadResponse = httpClient.execute(uploadFile);
 
         return uploadResponse;
+    }
+
+    @Override
+    public HttpResponse<String> searchUser(String word) throws Exception {
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString() + "/searchuser/"+word)
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN", UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> getUserInfo(long id) throws Exception {
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString() + "/users/"+id)
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN", UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
+
+    @Override
+    public HttpResponse<String> getWriterOfPost(long id) throws Exception {
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString() + "/postswriter/"+id)
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN", UserTo.getAuthToken())
+                .asString();
+        return response;
     }
 }

@@ -1,6 +1,7 @@
 package view.mainForms;
 
 import controller.PostController;
+import controller.SearchController;
 import model.util.Utils;
 
 import javax.swing.*;
@@ -194,10 +195,10 @@ public class ReviewForm {
             }
         });
 
-        nextPostbtn.addActionListener(PostController.getPostController());
+        nextPostbtn.addActionListener(SearchController.getProfileController());
         nextPostbtn.setActionCommand("NextButton_FillNewsFeed");
 
-        prviousPostbtn.addActionListener(PostController.getPostController());
+        prviousPostbtn.addActionListener(SearchController.getProfileController());
         prviousPostbtn.setActionCommand("PrivousButton_FillNewsFeed");
 
 

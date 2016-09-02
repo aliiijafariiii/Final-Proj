@@ -3,6 +3,8 @@ import com.mashape.unirest.http.HttpResponse;
 import jdk.nashorn.internal.ir.WhileNode;
 import model.bl.PostManager;
 import model.bl.PostManagerImpl;
+import model.bl.UserManager;
+import model.bl.UserManagerImpl;
 import model.to.PostJsonTo;
 import model.to.PostTo;
 import model.to.TagTo;
@@ -120,6 +122,18 @@ public class PostController implements ActionListener {
             postTo.setPublishDate((Long) pp.get("publishDate"));
             postTo.setIndex(0);
             postTo.setPicAddress(String.valueOf(pp.get("picAddress")));
+
+            UserManager userManager = UserManagerImpl.getUserManager();
+            HttpResponse<String> response = userManager.getWriterOfPost(Long.parseLong(FeedForm.getPostIdlabel().getText()));
+            HttpResponse<String> response1 = userManager.getUserInfo(Long.parseLong(response.getBody().substring(15,response.getBody().length()-1)));
+
+            JSONParser jsonParser1 = new JSONParser();
+            JSONObject jsonObject = (JSONObject) jsonParser1.parse(response1.getBody());
+
+
+                FeedForm.getWriteridlabel().setText(jsonObject.get("id")+"-"+jsonObject.get("userName"));
+
+
         } else {
             JOptionPane.showMessageDialog(null, "<html>There is no post to show!<br>Please upload new post or wait for friends posts</html> ");
         }
@@ -151,8 +165,20 @@ public class PostController implements ActionListener {
             postTo.setId((Long) pp.get("id"));
             postTo.setPublishDate((Long) pp.get("publishDate"));
             postTo.setPicAddress(String.valueOf(pp.get("picAddress")));
+
+            UserManager userManager = UserManagerImpl.getUserManager();
+            HttpResponse<String> response = userManager.getWriterOfPost(Long.parseLong(FeedForm.getPostIdlabel().getText()));
+            HttpResponse<String> response1 = userManager.getUserInfo(Long.parseLong(response.getBody().substring(15,response.getBody().length()-1)));
+
+            JSONParser jsonParser1 = new JSONParser();
+            JSONObject jsonObject = (JSONObject) jsonParser1.parse(response1.getBody());
+
+
+            FeedForm.getWriteridlabel().setText(jsonObject.get("id")+"-"+jsonObject.get("userName"));
+
+
         } else {
-            FeedForm.getNextPostbtn().setEnabled(false);
+//            FeedForm.getNextPostbtn().setEnabled(false);
             JOptionPane.showMessageDialog(null, "There Is No Another Post To Show!");
         }
     }
@@ -183,8 +209,19 @@ public class PostController implements ActionListener {
             postTo.setId((Long) pp.get("id"));
             postTo.setPublishDate((Long) pp.get("publishDate"));
             postTo.setPicAddress(String.valueOf(pp.get("picAddress")));
+
+
+            UserManager userManager = UserManagerImpl.getUserManager();
+            HttpResponse<String> response = userManager.getWriterOfPost(Long.parseLong(FeedForm.getPostIdlabel().getText()));
+            HttpResponse<String> response1 = userManager.getUserInfo(Long.parseLong(response.getBody().substring(15,response.getBody().length()-1)));
+
+            JSONParser jsonParser1 = new JSONParser();
+            JSONObject jsonObject = (JSONObject) jsonParser1.parse(response1.getBody());
+
+
+            FeedForm.getWriteridlabel().setText(jsonObject.get("id")+"-"+jsonObject.get("userName"));
         } else {
-            FeedForm.getPrviousPostbtn().setEnabled(false);
+//            FeedForm.getPrviousPostbtn().setEnabled(false);
             JOptionPane.showMessageDialog(null, "There Is No Another Post To Show!");
         }
     }

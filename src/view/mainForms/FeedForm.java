@@ -15,9 +15,15 @@ import java.util.Date;
  */
 public class FeedForm {
 
-    private static JLabel imagelabel,contentlabel,timelabel,postIdlabel,fasele;
+    private static JLabel imagelabel,contentlabel,timelabel,postIdlabel,writeridlabel,fasele;
     private static JButton nextPostbtn,prviousPostbtn,likeBtn,likersBtn,dislikeBtn,dislikersBtn,CommentBtn,CommentersBtn,tagsBtn,exitBtn;
 
+    public static JLabel getWriteridlabel() {
+        return writeridlabel;
+    }
+    public static void setWriteridlabel(JLabel writeridlabel) {
+        FeedForm.writeridlabel = writeridlabel;
+    }
     public static JLabel getImagelabel() {
         return imagelabel;
     }
@@ -132,6 +138,7 @@ public class FeedForm {
         fasele = new JLabel();
 
         postIdlabel = new JLabel("dslhfigg9gv5audh",SwingConstants.CENTER);
+        writeridlabel = new JLabel("dslhfigg9gv5audh",SwingConstants.CENTER);
         contentlabel = new JLabel("content",SwingConstants.CENTER);
         contentlabel.setBorder(new LineBorder(Color.black));
         timelabel = new JLabel(String.valueOf(new Date()),SwingConstants.CENTER);
@@ -167,7 +174,11 @@ public class FeedForm {
         exitBtn.setBackground(new Color(235, 215, 55));
         exitBtn.setForeground(Color.white);
 
-        panel1.add(postIdlabel);
+        JPanel p = new JPanel();
+        p.setLayout(new GridLayout(1 ,2));
+        p.add(writeridlabel);
+        p.add(postIdlabel);
+        panel1.add(p);
         panel1.add(contentlabel);
         panel1.add(timelabel);
 

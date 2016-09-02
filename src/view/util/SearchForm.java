@@ -1,8 +1,10 @@
 package view.util;
 
+import controller.SearchController;
 import view.mainForms.ReviewForm;
 import view.mainForms.UserForm;
 
+import javax.naming.directory.SearchControls;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +20,69 @@ public class SearchForm {
     private static JList<String> userList;
     private static JFrame frame;
 
+    public static JTextField getSearchText() {
+        return searchText;
+    }
+
+    public static void setSearchText(JTextField searchText) {
+        SearchForm.searchText = searchText;
+    }
+
+    public static JButton getSearchBtn() {
+        return searchBtn;
+    }
+
+    public static void setSearchBtn(JButton searchBtn) {
+        SearchForm.searchBtn = searchBtn;
+    }
+
+    public static JButton getExitBtn() {
+        return exitBtn;
+    }
+
+    public static void setExitBtn(JButton exitBtn) {
+        SearchForm.exitBtn = exitBtn;
+    }
+
+    public static JButton getShowProfileBtn() {
+        return showProfileBtn;
+    }
+
+    public static void setShowProfileBtn(JButton showProfileBtn) {
+        SearchForm.showProfileBtn = showProfileBtn;
+    }
+
+    public static JButton getShowPostsBtn() {
+        return showPostsBtn;
+    }
+
+    public static void setShowPostsBtn(JButton showPostsBtn) {
+        SearchForm.showPostsBtn = showPostsBtn;
+    }
+
+    public static DefaultListModel<String> getUsersDTM() {
+        return UsersDTM;
+    }
+
+    public static void setUsersDTM(DefaultListModel<String> usersDTM) {
+        UsersDTM = usersDTM;
+    }
+
+    public static JList<String> getUserList() {
+        return userList;
+    }
+
+    public static void setUserList(JList<String> userList) {
+        SearchForm.userList = userList;
+    }
+
+    public static JFrame getFrame() {
+        return frame;
+    }
+
+    public static void setFrame(JFrame frame) {
+        SearchForm.frame = frame;
+    }
 
     public SearchForm() {
         frame = new JFrame();
@@ -35,12 +100,12 @@ public class SearchForm {
         showProfileBtn = new JButton("Profile");
         showProfileBtn.setBackground(new Color(27, 202, 0));
         showProfileBtn.setForeground(Color.white);
-//        showProfileBtn.setEnabled(false);
+        showProfileBtn.setEnabled(false);
 
         showPostsBtn = new JButton("Posts");
         showPostsBtn.setBackground(new Color(27, 202, 0));
         showPostsBtn.setForeground(Color.white);
-//        showPostsBtn.setEnabled(false);
+        showPostsBtn.setEnabled(false);
 
         UsersDTM= new DefaultListModel<String>();
         userList= new JList<>(UsersDTM);
@@ -59,24 +124,21 @@ public class SearchForm {
         JLabel label1 = new JLabel("Search result:");
         label1.setHorizontalAlignment(SwingConstants.CENTER);
 
-        showProfileBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ShowUserInfoForm();
-            }
-        });
+        showProfileBtn.addActionListener(SearchController.getProfileController());
+        showProfileBtn.setActionCommand("ShowProfileOfUser");
+
         exitBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
             }
         });
-        showPostsBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new ReviewForm();
-            }
-        });
+
+        showPostsBtn.addActionListener(SearchController.getProfileController());
+        showPostsBtn.setActionCommand("ShowPostsOfUser");
+
+        searchBtn.addActionListener(SearchController.getProfileController());
+        searchBtn.setActionCommand("SearchForUsers");
 
         top.add(label);
         top.add(searchText);
