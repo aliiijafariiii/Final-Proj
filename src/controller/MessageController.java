@@ -83,14 +83,19 @@ public class MessageController implements ActionListener {
 
         }
             ////////////////////////
-//            TimerTask t = new TimerTask() {
-//                @Override
-//                public void run() {
-////                System.out.println("ali");
-//                }
-//            };
-//            java.util.Timer timer = new java.util.Timer();
-//            timer.schedule(t, 1000, 1000);
+            TimerTask t = new TimerTask() {
+                @Override
+                public void run() {
+                    try {
+                        HttpResponse<String> response = messageManager.checkNewMessage();
+                        System.out.println(response.getStatusText());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            java.util.Timer timer = new java.util.Timer();
+            timer.schedule(t, 5000, 5000);
         }
 
 

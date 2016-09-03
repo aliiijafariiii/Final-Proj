@@ -16,4 +16,6 @@ public interface MessageManager {
     public HttpResponse<String> getAllFriends(long id) throws Exception;
     public HttpResponse<String> getFriendsChatHistory(long id) throws Exception;
     public HttpResponse<String> getConversationForFill(long id) throws Exception;
+
+    public HttpResponse<String> checkNewMessage() throws Exception;
 }

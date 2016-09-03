@@ -1,8 +1,12 @@
+import view.mainForms.MassageFrom;
 import view.mainForms.ProfileForm;
 import view.mainForms.ReviewForm;
 import view.util.SearchForm;
 import view.util.ShowUserInfoForm;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,9 +15,16 @@ import java.util.TimerTask;
  */
 public class Test {
     public static void main(String[] args) throws Exception {
-       new ShowUserInfoForm();
-
-
+//       new MassageFrom();
+//        DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+//        DateFormat dateFormat2 = new SimpleDateFormat("HH:mm:ss");
+//        Date d1 = new Date();
+//        Date d2 = new Date();
+//        String t1 = dateFormat1.format(d1)+" "+dateFormat2.format(d1.getTime()-60000);
+//        String t2 = dateFormat1.format(d2)+" "+dateFormat2.format(d2);
+//
+//        System.out.println(t1);
+//        System.out.println(t2);
 
 
 ////        System.out.println(new Date().getTime());

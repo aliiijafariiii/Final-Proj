@@ -1,8 +1,16 @@
 package view.mainForms;
 
+import com.mashape.unirest.http.HttpResponse;
 import controller.MessageController;
+import model.bl.MessageManager;
+import model.bl.MessageManagerImpl;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -122,7 +130,10 @@ public class MassageFrom {
         historyList.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.out.println(historyList.getSelectedValue());
+//                MessageManager messageManager = MessageManagerImpl.getMessageManager();
+//                int i = MassageFrom.getHistoryList().getSelectedValue().indexOf("-");
+//                String s = MassageFrom.getHistoryList().getSelectedValue().substring(0,i);
+//                HttpResponse<String> response = messageManager.getConversationForFill(Long.valueOf(s));
             }
             @Override
             public void mousePressed(MouseEvent e) {
@@ -137,6 +148,12 @@ public class MassageFrom {
             public void mouseExited(MouseEvent e) {
             }
         });
+
+
+
+
+
+
 
         textArea = new JTextArea();
         sendbtn = new JButton("send");
@@ -158,6 +175,8 @@ public class MassageFrom {
         massageLabel = new JLabel();
 
         JScrollPane scroller = new JScrollPane(massageLabel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+
 
         panel4.add(textArea);
         panel4.add(sendbtn);

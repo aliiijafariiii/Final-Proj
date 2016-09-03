@@ -66,4 +66,13 @@ public class MessageManagerImpl implements MessageManager {
                 .asString();
         return response;
     }
+
+    @Override
+    public HttpResponse<String> checkNewMessage() throws Exception {
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/messagesnew")
+                .header("content-type", "application/json")
+                .header("X-AUTH-TOKEN",UserTo.getAuthToken())
+                .asString();
+        return response;
+    }
 }
