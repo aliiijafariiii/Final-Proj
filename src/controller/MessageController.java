@@ -87,7 +87,7 @@ public class MessageController implements ActionListener {
                 @Override
                 public void run() {
                     try {
-                        if (!MassageFrom.getFriendList().isSelectionEmpty()) {
+                        
                             HttpResponse<String> response = messageManager.checkNewMessage();
                             System.out.println(response.getStatusText());
                             System.out.println(response.getBody());
@@ -105,7 +105,7 @@ public class MessageController implements ActionListener {
                                    MassageFrom.getMassageLabel().setText("<html>"+ jsonObject.get("sender")+":"+MassageFrom.getTextArea().getText()+"</html>");
                                 }
                             }}
-                        }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
