@@ -87,8 +87,21 @@ public class MessageController implements ActionListener {
                 @Override
                 public void run() {
                     try {
-                        HttpResponse<String> response = messageManager.checkNewMessage();
-                        System.out.println(response.getStatusText());
+                        if (!MassageFrom.getFriendList().isSelectionEmpty()) {
+                            HttpResponse<String> response = messageManager.checkNewMessage();
+                            System.out.println(response.getStatusText());
+                            if (response.getBody()!="[]"){
+                                JSONParser jp = new JSONParser();
+                                JSONObject jsonObject = (JSONObject) jp.parse(response.getBody());
+                                if (MassageFrom.getMassageLabel().getText().length()!=0){
+                                    int i = MassageFrom.getMassageLabel().getText().length();
+                                    String n = MassageFrom.getMassageLabel().getText().substring(6,i-7);
+                                    MassageFrom.getMassageLabel().setText("<html>"+n+"<br>"+ jsonObject.get("sender")+":"+MassageFrom.getTextArea().getText()+"</html>");
+                                }else{
+                                   MassageFrom.getMassageLabel().setText("<html>"+ jsonObject.get("sender")+":"+MassageFrom.getTextArea().getText()+"</html>");
+                                }
+                            }
+                        }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
