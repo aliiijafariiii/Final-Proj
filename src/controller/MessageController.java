@@ -90,10 +90,10 @@ public class MessageController implements ActionListener {
                         if (!MassageFrom.getFriendList().isSelectionEmpty()) {
                             HttpResponse<String> response = messageManager.checkNewMessage();
                             System.out.println(response.getStatusText());
+                            System.out.println(response.getBody());
                             if (response.getBody()!="[]"){
                                 JSONParser jp = new JSONParser();
                                 JSONArray ja = (JSONArray) jp.parse(response.getBody());
-//                                JSONObject jsonObject = (JSONObject) jp.parse(response.getBody());
                                 Iterator<JSONObject> jsonObjectIterator3 = ja.iterator();
                                 while(jsonObjectIterator3.hasNext()){
                                     JSONObject jsonObject = jsonObjectIterator3.next();
