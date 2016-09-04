@@ -21,6 +21,15 @@ public class MassageFrom {
     private static JList<String> friendList;
     private static JLabel massageLabel;
     private static JList<String> historyList;
+    private static JFrame frame;
+
+    public static JFrame getFrame() {
+        return frame;
+    }
+
+    public static void setFrame(JFrame frame) {
+        MassageFrom.frame = frame;
+    }
 
     public static JLabel getMassageLabel() {
         return massageLabel;
@@ -95,7 +104,7 @@ public class MassageFrom {
     }
 
     public MassageFrom() {
-        final JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setLayout(new GridLayout(1, 2));
 
         JPanel panel = new JPanel();
@@ -192,12 +201,8 @@ public class MassageFrom {
         panel.add(panel2);
         panel.add(panel1);
 
-        exit.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose();
-            }
-        });
+        exit.addActionListener(MessageController.getMessageController());
+        exit.setActionCommand("ExitMessageForm");
 
         clear.addActionListener(new ActionListener() {
             @Override
