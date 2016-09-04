@@ -92,7 +92,11 @@ public class MessageController implements ActionListener {
                             System.out.println(response.getStatusText());
                             if (response.getBody()!="[]"){
                                 JSONParser jp = new JSONParser();
-                                JSONObject jsonObject = (JSONObject) jp.parse(response.getBody());
+                                JSONArray ja = (JSONArray) jp.parse(response.getBody());
+//                                JSONObject jsonObject = (JSONObject) jp.parse(response.getBody());
+                                Iterator<JSONObject> jsonObjectIterator3 = ja.iterator();
+                                while(jsonObjectIterator3.hasNext()){
+                                    JSONObject jsonObject = jsonObjectIterator3.next();
                                 if (MassageFrom.getMassageLabel().getText().length()!=0){
                                     int i = MassageFrom.getMassageLabel().getText().length();
                                     String n = MassageFrom.getMassageLabel().getText().substring(6,i-7);
@@ -100,7 +104,7 @@ public class MessageController implements ActionListener {
                                 }else{
                                    MassageFrom.getMassageLabel().setText("<html>"+ jsonObject.get("sender")+":"+MassageFrom.getTextArea().getText()+"</html>");
                                 }
-                            }
+                            }}
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
