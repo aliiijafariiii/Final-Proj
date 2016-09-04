@@ -87,7 +87,7 @@ public class MessageController implements ActionListener {
                 @Override
                 public void run() {
                     try {
-                        
+
                             HttpResponse<String> response = messageManager.checkNewMessage();
                             System.out.println(response.getStatusText());
                             System.out.println(response.getBody());
@@ -100,9 +100,9 @@ public class MessageController implements ActionListener {
                                 if (MassageFrom.getMassageLabel().getText().length()!=0){
                                     int i = MassageFrom.getMassageLabel().getText().length();
                                     String n = MassageFrom.getMassageLabel().getText().substring(6,i-7);
-                                    MassageFrom.getMassageLabel().setText("<html>"+n+"<br>"+ jsonObject.get("sender")+":"+MassageFrom.getTextArea().getText()+"</html>");
+                                    MassageFrom.getMassageLabel().setText("<html>"+n+"<br>"+ jsonObject.get("sender")+":"+jsonObject.get("content")+"</html>");
                                 }else{
-                                   MassageFrom.getMassageLabel().setText("<html>"+ jsonObject.get("sender")+":"+MassageFrom.getTextArea().getText()+"</html>");
+                                   MassageFrom.getMassageLabel().setText("<html>"+ jsonObject.get("sender")+":"+jsonObject.get("content")+"</html>");
                                 }
                             }}
 
