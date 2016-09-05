@@ -2,18 +2,19 @@ package view.mainForms;
 
 import com.mashape.unirest.http.HttpResponse;
 import controller.MessageController;
+import jdk.nashorn.internal.parser.JSONParser;
 import model.bl.MessageManager;
 import model.bl.MessageManagerImpl;
+import model.to.UserTo;
+import org.json.JSONArray;
+import org.json.simple.JSONObject;
 import view.util.ProssesBarForm;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Iterator;
 
 public class MassageFrom {
     private static JButton sendbtn,exit,clear;
@@ -149,9 +150,36 @@ public class MassageFrom {
                     HttpResponse<String> response = messageManager.getConversationForFill(Long.valueOf(s));
 
                     System.out.println(response.getBody());
-
-
-
+                    MassageFrom.getMassageLabel().setText("");
+                    if (response.getBody()!="[]"){
+                        org.json.simple.parser.JSONParser jsonParser = new org.json.simple.parser.JSONParser();
+                        org.json.simple.JSONArray jsonArray = (org.json.simple.JSONArray) jsonParser.parse(response.getBody());
+                        Iterator<JSONObject> jsonObjectIterator = jsonArray.iterator();
+                        while(jsonObjectIterator.hasNext()){
+                            JSONObject jsonObject = jsonObjectIterator.next();
+                            String sender = String.valueOf(jsonObject.get("sender"));
+                            String content = String.valueOf(jsonObject.get("content"));
+                            if (Long.valueOf(sender.substring(15,sender.length()-1))== UserTo.getId()){
+                                if (MassageFrom.getMassageLabel().getText().length()!=0){
+                                    int i = MassageFrom.getMassageLabel().getText().length();
+                                    String n = MassageFrom.getMassageLabel().getText().substring(6,i-7);
+                                    MassageFrom.getMassageLabel().setText("<html>"+n+"<br>"+ UserTo.getUsername()+":"+jsonObject.get("content")+"</html>");
+                                }else{
+                                    MassageFrom.getMassageLabel().setText("<html>"+ UserTo.getUsername()+":"+jsonObject.get("content")+"</html>");
+                                }
+                            }else{
+                                if (MassageFrom.getMassageLabel().getText().length()!=0){
+                                    int i = MassageFrom.getMassageLabel().getText().length();
+                                    String n = MassageFrom.getMassageLabel().getText().substring(6,i-7);
+                                    MassageFrom.getMassageLabel().setText("<html>"+n+"<br>"+ jsonObject.get("sender")+":"+jsonObject.get("content")+"</html>");
+                                }else{
+                                    MassageFrom.getMassageLabel().setText("<html>"+ jsonObject.get("sender")+":"+jsonObject.get("content")+"</html>");
+                                }
+                            }
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null,"no message yet");
+                    }
                     prossesBarForm.getjFrame().dispose();
                 } catch (Exception e1) {
                     e1.printStackTrace();
@@ -189,7 +217,7 @@ public class MassageFrom {
         panel4.setLayout(new GridLayout(4,1));
         panel4.setBorder(new TitledBorder("new message"));
 
-        massageLabel = new JLabel("Message Desk ! ");
+        massageLabel = new JLabel("MASSAGE DESK !");
 
         JScrollPane scroller = new JScrollPane(massageLabel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
