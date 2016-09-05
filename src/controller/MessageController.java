@@ -75,8 +75,6 @@ public class MessageController implements ActionListener {
                     for (int i = 0;i<bb.size();i++){
                         String m = bb.get(i).toString();
                         int b = m.indexOf('-');
-                        System.out.println("1->"+reciver.substring(15,reciver.length()-1));
-                        System.out.println("2->"+m.charAt(0));
                         if (b==1){
                             if (reciver.substring(15,reciver.length()-1).equals(String.valueOf(m.charAt(0)))||
                                 sender.substring(15,sender.length()-1).equals(String.valueOf(m.charAt(0)))){
@@ -87,30 +85,7 @@ public class MessageController implements ActionListener {
 
                             }
                         }
-            System.out.println(MassageFrom.getHistoryDTM().getSize());
                     }
-//            for (int i = 0;i<bb.size();i++){
-//                String m = bb.get(i).toString();
-//                int b = m.indexOf('-');
-//                System.out.println("b_>"+b);
-//                if (b==1){
-//                    String reciver = String.valueOf(jsonObject2.get("reciver"));
-//                    String sender = String.valueOf(jsonObject2.get("sender"));
-//                    System.out.println(m);
-//                    ////////////////////
-//                    System.out.println(reciver.substring(15,reciver.length()-1));
-//                    System.out.println(sender.substring(15,sender.length()-1));
-//                    ////////////////////
-//                if (reciver.substring(15,reciver.length()-1)==m.substring(0,b-1)||sender.substring(15,sender.length()-1)==m.substring(0,b-1)) {
-//                    MassageFrom.getHistoryDTM().addElement(String.valueOf(jsonObject2.get("id")) + "-" + m.substring(b + 1, m.length()));
-////                    System.out.println(String.valueOf(jsonObject2.get("id")) + "-" + m.substring(b + 1, m.length()));
-//                }
-//                }else{
-//                    MassageFrom.getHistoryDTM().addElement(String.valueOf(jsonObject2.get("id")) + "-" + m.substring(2, m.length()));
-////                    System.out.println(String.valueOf(jsonObject2.get("id")) + "-" + m.substring(2, m.length()));
-//                    }
-//                }
-
         }
             ////////////////////////
         TimerTask t = new TimerTask() {

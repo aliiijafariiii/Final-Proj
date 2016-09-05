@@ -2,11 +2,9 @@ package view.mainForms;
 
 import com.mashape.unirest.http.HttpResponse;
 import controller.MessageController;
-import jdk.nashorn.internal.parser.JSONParser;
 import model.bl.MessageManager;
 import model.bl.MessageManagerImpl;
 import model.to.UserTo;
-import org.json.JSONArray;
 import org.json.simple.JSONObject;
 import view.util.ProssesBarForm;
 
@@ -28,79 +26,60 @@ public class MassageFrom {
     public static JFrame getFrame() {
         return frame;
     }
-
     public static void setFrame(JFrame frame) {
         MassageFrom.frame = frame;
     }
-
     public static JLabel getMassageLabel() {
         return massageLabel;
     }
-
     public static void setMassageLabel(JLabel massageLabel) {
         MassageFrom.massageLabel = massageLabel;
     }
-
     public static JList<String> getHistoryList() {
         return historyList;
     }
-
     public static void setHistoryList(JList<String> historyList) {
         MassageFrom.historyList = historyList;
     }
-
     public static JButton getSendbtn() {
         return sendbtn;
     }
-
     public static JList<String> getFriendList() {
         return friendList;
     }
-
     public static void setFriendList(JList<String> friendList) {
         MassageFrom.friendList = friendList;
     }
-
     public static void setSendbtn(JButton sendbtn) {
         MassageFrom.sendbtn = sendbtn;
     }
-
     public static JButton getExit() {
         return exit;
     }
-
     public static void setExit(JButton exit) {
         MassageFrom.exit = exit;
     }
-
     public static JButton getClear() {
         return clear;
     }
-
     public static void setClear(JButton clear) {
         MassageFrom.clear = clear;
     }
-
     public static JTextArea getTextArea() {
         return textArea;
     }
-
     public static void setTextArea(JTextArea textArea) {
         MassageFrom.textArea = textArea;
     }
-
     public static DefaultListModel<String> getHistoryDTM() {
         return historyDTM;
     }
-
     public static void setHistoryDTM(DefaultListModel<String> historyDTM) {
         MassageFrom.historyDTM = historyDTM;
     }
-
     public static DefaultListModel<String> getFriendDTM() {
         return friendDTM;
     }
-
     public static void setFriendDTM(DefaultListModel<String> friendDTM) {
         MassageFrom.friendDTM = friendDTM;
     }
@@ -178,7 +157,7 @@ public class MassageFrom {
                             }
                         }
                     }else{
-                        JOptionPane.showMessageDialog(null,"no message yet");
+                        JOptionPane.showMessageDialog(null,"no message yet","warning",JOptionPane.ERROR_MESSAGE);
                     }
                     prossesBarForm.getjFrame().dispose();
                 } catch (Exception e1) {
@@ -220,8 +199,6 @@ public class MassageFrom {
         massageLabel = new JLabel("MASSAGE DESK !");
 
         JScrollPane scroller = new JScrollPane(massageLabel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-
 
         panel4.add(textArea);
         panel4.add(sendbtn);
