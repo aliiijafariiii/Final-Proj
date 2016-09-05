@@ -4,6 +4,7 @@ import com.mashape.unirest.http.HttpResponse;
 import controller.MessageController;
 import model.bl.MessageManager;
 import model.bl.MessageManagerImpl;
+import view.util.ProssesBarForm;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -139,10 +140,22 @@ public class MassageFrom {
         historyList.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                MessageManager messageManager = MessageManagerImpl.getMessageManager();
-//                int i = MassageFrom.getHistoryList().getSelectedValue().indexOf("-");
-//                String s = MassageFrom.getHistoryList().getSelectedValue().substring(0,i);
-//                HttpResponse<String> response = messageManager.getConversationForFill(Long.valueOf(s));
+                try {
+                    ProssesBarForm prossesBarForm = new ProssesBarForm();
+                    MessageManager messageManager = MessageManagerImpl.getMessageManager();
+//                    int i = MassageFrom.getHistoryList().getSelectedValue().indexOf("-");
+//                    String s = MassageFrom.getHistoryList().getSelectedValue().substring(0,i);
+                    String s = String.valueOf(MassageFrom.getHistoryList().getSelectedValue().charAt(0));
+                    HttpResponse<String> response = messageManager.getConversationForFill(Long.valueOf(s));
+
+                    System.out.println(response.getBody());
+
+
+
+                    prossesBarForm.getjFrame().dispose();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
             }
             @Override
             public void mousePressed(MouseEvent e) {
@@ -157,11 +170,6 @@ public class MassageFrom {
             public void mouseExited(MouseEvent e) {
             }
         });
-
-
-
-
-
 
 
         textArea = new JTextArea();
@@ -181,7 +189,7 @@ public class MassageFrom {
         panel4.setLayout(new GridLayout(4,1));
         panel4.setBorder(new TitledBorder("new message"));
 
-        massageLabel = new JLabel();
+        massageLabel = new JLabel("Message Desk ! ");
 
         JScrollPane scroller = new JScrollPane(massageLabel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 

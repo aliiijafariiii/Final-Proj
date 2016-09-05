@@ -60,7 +60,7 @@ public class MessageManagerImpl implements MessageManager {
 
     @Override
     public HttpResponse<String> getConversationForFill(long id) throws Exception {
-        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/conversation/"+id+"/"+UserTo.getId())
+        HttpResponse<String> response = Unirest.get(Utils.getUrlString()+"/messages/"+id+"/"+UserTo.getId())
                 .header("content-type", "application/json")
                 .header("X-AUTH-TOKEN",UserTo.getAuthToken())
                 .asString();

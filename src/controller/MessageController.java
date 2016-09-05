@@ -81,9 +81,8 @@ public class MessageController implements ActionListener {
                             if (reciver.substring(15,reciver.length()-1).equals(String.valueOf(m.charAt(0)))||
                                 sender.substring(15,sender.length()-1).equals(String.valueOf(m.charAt(0)))){
 
-                                        MassageFrom.getHistoryDTM().addElement("id"+ "-" + m.substring(b + 1, m.length()));
-
-
+//                                        MassageFrom.getHistoryDTM().addElement("id"+ "-" + m.substring(b + 1, m.length()));
+                                MassageFrom.getHistoryDTM().addElement(m);
                                 }
 
                             }
@@ -151,6 +150,8 @@ public class MessageController implements ActionListener {
     public void SendNewMessage() throws Exception {
         MessageManager messageManager = MessageManagerImpl.getMessageManager();
 
+        if (!MassageFrom.getFriendList().isSelectionEmpty()){
+
         JSONObject jsonObject1 = new JSONObject();
         JSONObject jsonObject2 = new JSONObject();
         jsonObject1.put("id",null);
@@ -174,4 +175,8 @@ public class MessageController implements ActionListener {
         }
         MassageFrom.getTextArea().setText("");
     }
+        else{
+            JOptionPane.showMessageDialog(null,"Please select one user!","warning",JOptionPane.ERROR_MESSAGE);
+        }
     }
+}
